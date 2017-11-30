@@ -1,0 +1,31 @@
+﻿<Application
+    x:Class="Doji.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Doji"
+    xmlns:viewModels="using:Doji.ViewModels"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <viewModels:ViewModelLocator x:Key="Locator" />
+            
+            <DataTemplate x:Key="CandleTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding Timestamp}" />
+                    <TextBlock Grid.Column="1" Text="{Binding Open}" /> 
+                    <TextBlock Grid.Column="2" Text="{Binding Close}" />
+                    <TextBlock Grid.Column="3" Text="{Binding Low}" />
+                    <TextBlock Grid.Column="4" Text="{Binding High}" />
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
