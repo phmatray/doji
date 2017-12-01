@@ -32,7 +32,8 @@ namespace Doji.ViewModels
             if (IsInDesignMode)
             {
                 // Code runs in Blend --> create design time data.
-                LoadDesignData();
+                LoadAsync();
+                //LoadDesignData();
             }
             else
             {
@@ -63,13 +64,16 @@ namespace Doji.ViewModels
 
         private async Task LoadAsync()
         {
-            Hello = "Welcome to Doji !!";
-
             Uri appUri = new Uri("ms-appx:///Assets/btc-ada.json");
             StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(appUri);
             string json = await FileIO.ReadTextAsync(file);
-            var candles = JsonConvert.DeserializeObject<BittrexCandle[]>(json).TakeLast(50);
-            Candles = candles.ToList();
+            var candles = JsonConvert.DeserializeObject<BittrexCandle[]>(json)
+                .TakeLast(96)
+                .Reverse()
+                .ToList();
+
+            Hello = "Welcome to Doji !!";
+            Candles = candles;
         }
     }
 }

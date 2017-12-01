@@ -1,28 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.System.Profile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Doji.Common;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Threading;
+using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Extensions;
+using ApplicationView = Microsoft.Toolkit.Uwp.UI.Extensions.ApplicationView;
+using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace Doji
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -34,13 +30,91 @@ namespace Doji
             this.Suspending += OnSuspending;
         }
 
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            await RunAppInitialization(null);
+
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                try
+                {
+                    // Launching via protocol link
+                    //var parser = DeepLinkParser.Create(args);
+                    //var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
+                    //if (targetSample != null)
+                    //{
+                    //    Shell.Current?.NavigateToSample(targetSample);
+                    //}
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error processing protocol launch: {ex.ToString()}");
+                }
+            }
+        }
+
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Windows.Foundation.Size(500, 500));
+
+            if (e.PrelaunchActivated)
+            {
+                return;
+            }
+
+            if (e.PreviousExecutionState != ApplicationExecutionState.Running
+                && e.PreviousExecutionState != ApplicationExecutionState.Suspended)
+            {
+                await RunAppInitialization(e?.Arguments);
+            }
+
+            SystemInformation.TrackAppUse(e);
+        }
+
+        private static void HandleNotificationMessage(NotificationMessageAction<string> message)
+        {
+            message.Execute("Reçu et Traité par App.xaml.cs!");
+        }
+
+        /// <summary>
+        /// Event fired when a Background Task is activated (in Single Process Model)
+        /// </summary>
+        /// <param name="args">Arguments that describe the BackgroundTask activated</param>
+        protected override void OnBackgroundActivated(BackgroundActivatedEventArgs args)
+        {
+            base.OnBackgroundActivated(args);
+
+            var deferral = args.TaskInstance.GetDeferral();
+
+            switch (args.TaskInstance.Task.Name)
+            {
+                case Constants.TestBackgroundTaskName:
+                    new TestBackgroundTask().Run(args.TaskInstance);
+                    break;
+            }
+
+            deferral.Complete();
+        }
+
+        private async Task RunAppInitialization(string launchParameters)
+        {
+            // Go fullscreen on Xbox
+            if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() == DeviceFormFactor.Xbox)
+            {
+                Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            }
+
+            // Initialize the constant for the app display name, used for tile and toast previews
+            if (Constants.ApplicationDisplayName == null)
+            {
+                Constants.ApplicationDisplayName = (await Package.Current.GetAppListEntriesAsync())[0].DisplayInfo.DisplayName;
+            }
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -52,28 +126,23 @@ namespace Doji
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
 
-            if (e.PrelaunchActivated == false)
+            if (rootFrame.Content == null)
             {
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                }
-                // Ensure the current window is active
-                Window.Current.Activate();
+                // When the navigation stack isn't restored navigate to the first page,
+                // configuring the new page by passing required information as a navigation
+                // parameter
+                rootFrame.Navigate(typeof(Shell), launchParameters);
             }
 
+            // Ensure the current window is active
+            Window.Current.Activate();
+
+
+            // Mvvm light init
             DispatcherHelper.Initialize();
 
             Messenger.Default.Register<NotificationMessageAction<string>>(
@@ -81,10 +150,6 @@ namespace Doji
                 HandleNotificationMessage);
         }
 
-        private static void HandleNotificationMessage(NotificationMessageAction<string> message)
-        {
-            message.Execute("Reçu et Traité par App.xaml.cs!");
-        }
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
@@ -106,6 +171,7 @@ namespace Doji
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
+
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }

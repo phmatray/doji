@@ -4,28 +4,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Doji"
     xmlns:viewModels="using:Doji.ViewModels"
+    xmlns:converters="using:Doji.Views.Converters"
     RequestedTheme="Light">
 
     <Application.Resources>
         <ResourceDictionary>
+
+            <!--  Colors  -->
+            <Color x:Key="Grey-01">#FF333333</Color>
+            <Color x:Key="Grey-02">#FF444444</Color>
+            <Color x:Key="Grey-03">#FF555555</Color>
+            <Color x:Key="Grey-04">#FFDDDDDD</Color>
+            <Color x:Key="Grey-05">#FFF0F0F0</Color>
+            <Color x:Key="White">#FFFFFFFF</Color>
+            <Color x:Key="Blue-01">#FF0078D7</Color>
+            <Color x:Key="Brand-Color">#3750D1</Color>
+
+            <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource Brand-Color}" />
+
+            <!--  Brushes  -->
+            <SolidColorBrush x:Key="Brush-Grey-01"
+                             Color="{StaticResource Grey-01}" />
+            <SolidColorBrush x:Key="Brush-Grey-02"
+                             Color="{StaticResource Grey-02}" />
+            <SolidColorBrush x:Key="Brush-Grey-03"
+                             Color="{StaticResource Grey-03}" />
+            <SolidColorBrush x:Key="Brush-Grey-04"
+                             Color="{StaticResource Grey-04}" />
+            <SolidColorBrush x:Key="Brush-Grey-05"
+                             Color="{StaticResource Grey-05}" />
+            <SolidColorBrush x:Key="Brush-White"
+                             Color="{StaticResource White}" />
+            <SolidColorBrush x:Key="Brush-Blue-01"
+                             Color="{StaticResource Blue-01}" />
+            <SolidColorBrush x:Key="Brush-Brand-Color"
+                             Color="{StaticResource Brand-Color}" />
+            
+            <!-- Converters -->
+            <converters:DateFormatConverter x:Key="DateFormatConverter" />
+            <converters:PriceFormatConverter x:Key="PriceFormatConverter" />
+
+            <!-- Styles --> 
+            
+            <!-- VM Locator -->
             <viewModels:ViewModelLocator x:Key="Locator" />
             
-            <DataTemplate x:Key="CandleTemplate">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="{Binding Timestamp}" />
-                    <TextBlock Grid.Column="1" Text="{Binding Open}" /> 
-                    <TextBlock Grid.Column="2" Text="{Binding Close}" />
-                    <TextBlock Grid.Column="3" Text="{Binding Low}" />
-                    <TextBlock Grid.Column="4" Text="{Binding High}" />
-                </Grid>
-            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

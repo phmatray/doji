@@ -95,21 +95,58 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\AnalyticsVersionInfoExtensions.cs" />
+    <Compile Include="Common\IXamlRenderListener.cs" />
+    <Compile Include="Common\XAMLHelper.cs" />
+    <Compile Include="Common\DelegateCommand{T}.cs" />
+    <Compile Include="Common\SampleCommand.cs" />
+    <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="Controls\XamlExceptionRange.cs" />
+    <Compile Include="Controls\XamlRenderService.cs" />
+    <Compile Include="Data\GitHub.cs" />
+    <Compile Include="Models\LandingPageResource.cs" />
+    <Compile Include="Models\LandingPageLinks.cs" />
+    <Compile Include="Models\LandingPageLink.cs" />
+    <Compile Include="Models\GitHubRelease.cs" />
+    <Compile Include="Models\Option.cs" />
+    <Compile Include="Models\PropertyDescriptor\PropertyDescriptor.cs" />
+    <Compile Include="Models\PropertyDescriptor\PropertyKind.cs" />
+    <Compile Include="Models\PropertyDescriptor\PropertyOptions.cs" />
+    <Compile Include="Models\PropertyDescriptor\SliderPropertyOptions.cs" />
+    <Compile Include="Models\PropertyDescriptor\ValueHolder.cs" />
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SampleCategory.cs" />
+    <Compile Include="Models\Samples.cs" />
+    <Compile Include="Pages\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TrackingManager.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Controls\CodeRenderer\CodeRenderer.Properties.cs" />
+    <Compile Include="Controls\CodeRenderer\CodeRenderer.cs" />
+    <Compile Include="Controls\ExtendedHamburgerMenu.cs" />
     <Compile Include="Design\DataService.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataItem.cs" />
     <Compile Include="Models\DataService.cs" />
     <Compile Include="Models\IDataService.cs" />
+    <Compile Include="Models\Patterns\CandlestickPattern.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Pages\Converters\PriceFormatConverter.cs" />
+    <Compile Include="Pages\Converters\DateFormatConverter.cs" />
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\background_1920.jpg" />
     <Content Include="Assets\btc-ada.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -130,7 +167,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainPage.xaml">
+    <Page Include="Pages\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -145,15 +190,29 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>2.1.0</Version>
     </PackageReference>
+    <PackageReference Include="Monaco.Editor">
+      <Version>0.5.0-alpha</Version>
+    </PackageReference>
     <PackageReference Include="MvvmLight">
       <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>10.0.3</Version>
     </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="UWP.SDKforGoogleAnalytics.Managed">
+      <Version>1.5.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Folder Include="Assets\Html\" />
+    <Folder Include="Assets\NotificationAssets\" />
+    <Folder Include="Assets\People\" />
+    <Folder Include="Assets\Photos\" />
+    <Folder Include="Assets\Prettify\" />
+    <Folder Include="Icons\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
