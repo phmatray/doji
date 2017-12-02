@@ -10,7 +10,7 @@ namespace Doji.Pages.Converters
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return $"{((DateTime) value):MM/dd/yyyy hh:mm tt}";
+            return $"{((DateTime)value):MM/dd/yyyy hh:mm tt}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

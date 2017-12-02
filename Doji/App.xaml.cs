@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.System.Profile;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -10,7 +11,6 @@ using Doji.Common;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Extensions;
-using ApplicationView = Microsoft.Toolkit.Uwp.UI.Extensions.ApplicationView;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace Doji
@@ -39,12 +39,12 @@ namespace Doji
                 try
                 {
                     // Launching via protocol link
-                    //var parser = DeepLinkParser.Create(args);
-                    //var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
-                    //if (targetSample != null)
-                    //{
-                    //    Shell.Current?.NavigateToSample(targetSample);
-                    //}
+                    var parser = DeepLinkParser.Create(args);
+                    var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
+                    if (targetSample != null)
+                    {
+                        Shell.Current?.NavigateToSample(targetSample);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -60,7 +60,7 @@ namespace Doji
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Windows.Foundation.Size(500, 500));
+            Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().SetPreferredMinSize(new Windows.Foundation.Size(500, 500));
 
             if (e.PrelaunchActivated)
             {
@@ -91,12 +91,12 @@ namespace Doji
 
             var deferral = args.TaskInstance.GetDeferral();
 
-            switch (args.TaskInstance.Task.Name)
-            {
-                case Constants.TestBackgroundTaskName:
-                    new TestBackgroundTask().Run(args.TaskInstance);
-                    break;
-            }
+            //switch (args.TaskInstance.Task.Name)
+            //{
+            //    case Constants.TestBackgroundTaskName:
+            //        new TestBackgroundTask().Run(args.TaskInstance);
+            //        break;
+            //}
 
             deferral.Complete();
         }

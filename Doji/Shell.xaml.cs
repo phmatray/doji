@@ -98,7 +98,7 @@ namespace Doji
 
         public void NavigateToSample(Sample sample)
         {
-            var pageType = Type.GetType("Microsoft.Toolkit.Uwp.SampleApp.SamplePages." + sample.Type);
+            var pageType = Type.GetType("Doji.SamplePages." + sample.Type);
 
             if (pageType != null)
             {

@@ -25,6 +25,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using Formatting = Newtonsoft.Json.Formatting;
 
 namespace Doji.Controls
 {

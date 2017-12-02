@@ -68,7 +68,7 @@ namespace Doji
 #if DEBUG
                 _codeUrl = value;
 #else
-                var regex = new Regex("^https://github.com/Microsoft/UWPCommunityToolkit/(tree|blob)/(?<branch>.+?)/(?<path>.*)");
+                var regex = new Regex("^https://github.com/phmatray/Doji/(tree|blob)/(?<branch>.+?)/(?<path>.*)");
                 var docMatch = regex.Match(value);
 
                 var branch = string.Empty;
@@ -85,7 +85,7 @@ namespace Doji
                 }
                 else
                 {
-                    _codeUrl = $"https://github.com/Microsoft/UWPCommunityToolkit/tree/master/{path}";
+                    _codeUrl = $"https://github.com/phmatray/Doji/tree/master/{path}";
                 }
 #endif
 

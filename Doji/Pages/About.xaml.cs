@@ -17,6 +17,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Doji.Common;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using Newtonsoft.Json;
 using Windows.ApplicationModel;
@@ -28,7 +29,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using Doji.Common;
 
 namespace Doji.Pages
 {
