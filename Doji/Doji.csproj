@@ -126,6 +126,12 @@
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
+      <DependentUpon>AbandonedBabyBottomPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\Hello\HelloPage.xaml.cs">
+      <DependentUpon>HelloPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperPage.xaml.cs">
       <DependentUpon>BackgroundTaskHelperPage.xaml</DependentUpon>
     </Compile>
@@ -168,12 +174,16 @@
     <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Photos\ales-krivec-43430.jpg" />
     <Content Include="Icons\Helpers.png" />
+    <Content Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
+    <Content Include="SamplePages\Hello\Hello.png" />
     <Content Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelper.png" />
     <Content Include="SamplePages\samples.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="landingPageLinks.json" />
     <Content Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperCode.bind" />
+    <Content Include="SamplePages\Hello\HelloCode.bind" />
+    <Content Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternCode.bind" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -197,6 +207,14 @@
     <Page Include="Pages\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SamplePages\Hello\HelloPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperPage.xaml">
       <Generator>MSBuild:Compile</Generator>
