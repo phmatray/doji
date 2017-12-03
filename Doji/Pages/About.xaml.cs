@@ -36,34 +36,34 @@ namespace Doji.Pages
     {
         private Compositor _compositor;
 
-        private IEnumerable<Sample> _recentSamples;
+        private IEnumerable<Pattern> _recentPatterns;
 
-        public IEnumerable<Sample> RecentSamples
+        public IEnumerable<Pattern> RecentPatterns
         {
             get
             {
-                return _recentSamples;
+                return _recentPatterns;
             }
 
             set
             {
-                _recentSamples = value;
+                _recentPatterns = value;
                 OnPropertyChanged();
             }
         }
 
-        private static List<Sample> _newSamples;
+        private static List<Pattern> _newPatterns;
 
-        public List<Sample> NewSamples
+        public List<Pattern> NewPatterns
         {
             get
             {
-                return _newSamples;
+                return _newPatterns;
             }
 
             set
             {
-                _newSamples = value;
+                _newPatterns = value;
                 OnPropertyChanged();
             }
         }
@@ -105,7 +105,7 @@ namespace Doji.Pages
             InitializeComponent();
         }
 
-        public static Visibility VisibleIfCollectionEmpty(IEnumerable<Sample> collection)
+        public static Visibility VisibleIfCollectionEmpty(IEnumerable<Pattern> collection)
         {
             return collection != null && collection.Count() > 0 ? Visibility.Collapsed : Visibility.Visible;
         }
@@ -144,12 +144,12 @@ namespace Doji.Pages
         private async Task Init()
         {
             var loadDataTask = UpdateSections();
-            var recentSamplesTask = Samples.GetRecentSamples();
+            var recentPatternsTask = Patterns.GetRecentPatterns();
             var gitHubTask = Data.GitHub.GetPublishedReleases();
 
-            await Task.WhenAll(loadDataTask, recentSamplesTask, gitHubTask);
+            await Task.WhenAll(loadDataTask, recentPatternsTask, gitHubTask);
 
-            RecentSamples = recentSamplesTask.Result;
+            RecentPatterns = recentPatternsTask.Result;
             GitHubReleases = gitHubTask.Result;
 
             var counter = 1;
@@ -187,23 +187,23 @@ namespace Doji.Pages
             Root.Visibility = Visibility.Visible;
         }
 
-        private void RecentSample_Click(object sender, RoutedEventArgs e)
+        private void RecentPattern_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as HyperlinkButton;
-            if (button.DataContext is Sample sample)
+            if (button.DataContext is Pattern pattern)
             {
-                TrackingManager.TrackEvent("LandingPageRecentClick", sample.Name);
-                Shell.Current.NavigateToSample(sample);
+                TrackingManager.TrackEvent("LandingPageRecentClick", pattern.Name);
+                Shell.Current.NavigateToPattern(pattern);
             }
         }
 
-        private void NewSample_Click(object sender, RoutedEventArgs e)
+        private void NewPattern_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as HyperlinkButton;
-            if (button.DataContext is Sample sample)
+            if (button.DataContext is Pattern pattern)
             {
-                TrackingManager.TrackEvent("LandingPageNewClick", sample.Name);
-                Shell.Current.NavigateToSample(sample);
+                TrackingManager.TrackEvent("LandingPageNewClick", pattern.Name);
+                Shell.Current.NavigateToPattern(pattern);
             }
         }
 
@@ -235,18 +235,18 @@ namespace Doji.Pages
                     LandingPageLinks = JsonConvert.DeserializeObject<LandingPageLinks>(jsonString);
                 }
 
-                var samples = new List<Sample>();
+                var patterns = new List<Pattern>();
 
-                foreach (var newSample in LandingPageLinks.NewSamples)
+                foreach (var newPattern in LandingPageLinks.NewPatterns)
                 {
-                    var sample = await Samples.GetSampleByName(newSample);
-                    if (sample != null)
+                    var pattern = await Patterns.GetPatternByName(newPattern);
+                    if (pattern != null)
                     {
-                        samples.Add(sample);
+                        patterns.Add(pattern);
                     }
                 }
 
-                NewSamples = samples;
+                NewPatterns = patterns;
             }
 
             foreach (var section in LandingPageLinks.Resources.Reverse())

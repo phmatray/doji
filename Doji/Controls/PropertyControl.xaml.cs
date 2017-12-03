@@ -29,7 +29,7 @@ namespace Doji.Controls
     {
         private static Dictionary<Color, string> _colorNames;
 
-        private Sample _currentSample;
+        private Pattern _currentPattern;
 
         public PropertyControl()
         {
@@ -47,18 +47,18 @@ namespace Doji.Controls
 
         private void PropertyControl_OnDataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            if (args.NewValue == _currentSample)
+            if (args.NewValue == _currentPattern)
             {
                 return;
             }
 
-            _currentSample = DataContext as Sample;
+            _currentPattern = DataContext as Pattern;
 
             RootPanel.Children.Clear();
 
-            if (_currentSample != null)
+            if (_currentPattern != null)
             {
-                var propertyDesc = _currentSample.PropertyDescriptor;
+                var propertyDesc = _currentPattern.PropertyDescriptor;
 
                 if (propertyDesc == null)
                 {

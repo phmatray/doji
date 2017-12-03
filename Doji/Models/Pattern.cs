@@ -29,7 +29,7 @@ using Doji.Models;
 
 namespace Doji
 {
-    public class Sample
+    public class Pattern
     {
         private const string _repoOnlineRoot = "https://raw.githubusercontent.com/Microsoft/UWPCommunityToolkit/";
         private const string _docsOnlineRoot = "https://raw.githubusercontent.com/MicrosoftDocs/UWPCommunityToolkitDocs/";
@@ -37,12 +37,12 @@ namespace Doji
         private static HttpClient client = new HttpClient();
         private string _cachedDocumentation = string.Empty;
 
-        internal static async Task<Sample> FindAsync(string category, string name)
+        internal static async Task<Pattern> FindAsync(string category, string name)
         {
-            var categories = await Samples.GetCategoriesAsync();
+            var categories = await Patterns.GetCategoriesAsync();
             return categories?
                 .FirstOrDefault(c => c.Name.Equals(category, StringComparison.OrdinalIgnoreCase))?
-                .Samples
+                .Patterns
                 .FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
@@ -133,7 +133,7 @@ namespace Doji
 
         public async Task<string> GetCSharpSourceAsync()
         {
-            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Name}/{CodeFile}"))
+            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"Patterns/{Name}/{CodeFile}"))
             {
                 return await codeStream.ReadTextAsync();
             }
@@ -141,7 +141,7 @@ namespace Doji
 
         public async Task<string> GetJavaScriptSourceAsync()
         {
-            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Name}/{JavaScriptCodeFile}"))
+            using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"Patterns/{Name}/{JavaScriptCodeFile}"))
             {
                 return await codeStream.ReadTextAsync();
             }
@@ -337,7 +337,7 @@ namespace Doji
             if (_propertyDescriptor == null)
             {
                 // Get Xaml code
-                using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"SamplePages/{Name}/{XamlCodeFile}"))
+                using (var codeStream = await StreamHelper.GetPackagedFileStreamAsync($"Patterns/{Name}/{XamlCodeFile}"))
                 {
                     XamlCode = await codeStream.ReadTextAsync(Encoding.UTF8);
 

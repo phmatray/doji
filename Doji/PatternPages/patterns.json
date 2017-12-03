@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Patterns",
+    "Icon": "Icons/Helpers.png",
+    "Patterns": [
+      {
+        "Name": "AbandonedBabyBottomPattern",
+        "Type": "AbandonedBabyBottomPatternPage",
+        "About": "Three candle chart formation that has a solid track record of being an accurate bullish reversal pattern.",
+        //"CodeUrl": "https://github.com/Microsoft/UWPCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/BackgroundTaskHelper.cs",
+        //"CodeFile": "AbandonedBabyBottomPatternCode.bind",
+        "Icon": "/PatternPages/AbandonedBabyBottomPattern/AbandonedBabyBottomPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AbandonedBabyBottomPattern.md"
+      }
+    ]
+  }
+]

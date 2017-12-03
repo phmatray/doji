@@ -120,22 +120,15 @@
     <Compile Include="Models\PropertyDescriptor\PropertyOptions.cs" />
     <Compile Include="Models\PropertyDescriptor\SliderPropertyOptions.cs" />
     <Compile Include="Models\PropertyDescriptor\ValueHolder.cs" />
-    <Compile Include="Models\Sample.cs" />
-    <Compile Include="Models\SampleCategory.cs" />
-    <Compile Include="Models\Samples.cs" />
+    <Compile Include="Models\Pattern.cs" />
+    <Compile Include="Models\PatternCategory.cs" />
+    <Compile Include="Models\Patterns.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
+    <Compile Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
       <DependentUpon>AbandonedBabyBottomPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SamplePages\Hello\HelloPage.xaml.cs">
-      <DependentUpon>HelloPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperPage.xaml.cs">
-      <DependentUpon>BackgroundTaskHelperPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SamplePages\BackgroundTaskHelper\TestBackgroundTask.cs" />
     <Compile Include="TrackingManager.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\CodeRenderer\CodeRenderer.Properties.cs" />
@@ -175,16 +168,11 @@
     <Content Include="Assets\Photos\ales-krivec-43430.jpg" />
     <Content Include="Assets\Photos\reflection-849159_1920.jpg" />
     <Content Include="Icons\Helpers.png" />
-    <Content Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
-    <Content Include="SamplePages\Hello\Hello.png" />
-    <Content Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelper.png" />
-    <Content Include="SamplePages\samples.json">
+    <Content Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
+    <Content Include="PatternPages\patterns.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="landingPageLinks.json" />
-    <Content Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperCode.bind" />
-    <Content Include="SamplePages\Hello\HelloCode.bind" />
-    <Content Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternCode.bind" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -209,15 +197,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SamplePages\Hello\HelloPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="SamplePages\BackgroundTaskHelper\BackgroundTaskHelperPage.xaml">
+    <Page Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

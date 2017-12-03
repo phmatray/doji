@@ -155,7 +155,7 @@ namespace Doji.Controls
             _printHelper.OnPrintSucceeded += PrintHelper_OnPrintSucceeded;
             _printHelper.OnPrintCanceled += PrinteHelper_OnPrintCanceled;
 
-            await _printHelper.ShowPrintUIAsync("UWP Community Toolkit Sample App");
+            await _printHelper.ShowPrintUIAsync("UWP Community Toolkit Pattern App");
         }
 
         private void ReleasePrintHelper()
