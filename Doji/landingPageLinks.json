@@ -1,6 +1,6 @@
 {
   "new-section-title": "What's New",
-  "new-samples": [ "DockPanel", "HeaderedItemsControl", "HeaderedContentControl", "Connected Animations", "Implicit Animations" ],
+  "new-patterns": [ "DockPanel", "HeaderedItemsControl", "HeaderedContentControl", "Connected Animations", "Implicit Animations" ],
   "resources": [
     {
       "title": "Doji",

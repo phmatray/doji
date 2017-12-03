@@ -34,8 +34,8 @@ namespace Doji.Controls
         private Button _hamburgerButton;
         private ListView _buttonsListView;
         private ListView _optionsListView;
-        private Grid _samplePickerGrid;
-        private GridView _samplePickerGridView;
+        private Grid _patternPickerGrid;
+        private GridView _patternPickerGridView;
         private Border _contentShadow;
         private Grid _searchGrid;
         private TextBlock _titleTextBlock;
@@ -49,9 +49,9 @@ namespace Doji.Controls
         /// <summary>
         /// Event raised when an item is clicked
         /// </summary>
-        public event ItemClickEventHandler SamplePickerItemClick;
+        public event ItemClickEventHandler PatternPickerItemClick;
 
-        private Sample _currentSample;
+        private Pattern _currentPattern;
 
         public string Title
         {
@@ -62,76 +62,76 @@ namespace Doji.Controls
         public static readonly DependencyProperty TitleProperty =
             DependencyProperty.Register("Title", typeof(string), typeof(ExtendedHamburgerMenu), new PropertyMetadata(string.Empty));
 
-        public Sample CurrentSample
+        public Pattern CurrentPattern
         {
             get
             {
-                return _currentSample;
+                return _currentPattern;
             }
 
             set
             {
-                _currentSample = value;
+                _currentPattern = value;
                 var noop = SetHamburgerMenuSelection();
             }
         }
 
-        public void HideSamplePicker()
+        public void HidePatternPicker()
         {
-            if (SetupSamplePicker())
+            if (SetupPatternPicker())
             {
-                _samplePickerGrid.Visibility = Visibility.Collapsed;
+                _patternPickerGrid.Visibility = Visibility.Collapsed;
             }
 
             var noop = SetHamburgerMenuSelection();
         }
 
-        public async void ShowSamplePicker(Sample[] samples = null)
+        public async void ShowPatternPicker(Pattern[] patterns = null)
         {
-            if (!SetupSamplePicker())
+            if (!SetupPatternPicker())
             {
                 return;
             }
 
-            if (samples == null && _currentSample != null)
+            if (patterns == null && _currentPattern != null)
             {
-                var category = await Samples.GetCategoryBySample(_currentSample);
+                var category = await Patterns.GetCategoryByPattern(_currentPattern);
                 if (category != null)
                 {
-                    samples = category.Samples;
+                    patterns = category.Patterns;
                 }
             }
 
-            if (samples == null)
+            if (patterns == null)
             {
-                samples = (await Samples.GetCategoriesAsync()).FirstOrDefault()?.Samples;
+                patterns = (await Patterns.GetCategoriesAsync()).FirstOrDefault()?.Patterns;
             }
 
-            if (samples == null)
+            if (patterns == null)
             {
                 return;
             }
 
-            if (_samplePickerGrid.Visibility == Visibility.Visible &&
-                _samplePickerGridView.ItemsSource is Sample[] currentSamples &&
-                currentSamples.Count() == samples.Count() &&
-                currentSamples.Except(samples).Count() == 0)
+            if (_patternPickerGrid.Visibility == Visibility.Visible &&
+                _patternPickerGridView.ItemsSource is Pattern[] currentPatterns &&
+                currentPatterns.Count() == patterns.Count() &&
+                currentPatterns.Except(patterns).Count() == 0)
             {
                 return;
             }
 
-            _samplePickerGridView.ItemsSource = samples;
+            _patternPickerGridView.ItemsSource = patterns;
 
-            if (_currentSample != null && samples.Contains(_currentSample))
+            if (_currentPattern != null && patterns.Contains(_currentPattern))
             {
-                _samplePickerGridView.SelectedItem = _currentSample;
+                _patternPickerGridView.SelectedItem = _currentPattern;
             }
             else
             {
-                _samplePickerGridView.SelectedItem = null;
+                _patternPickerGridView.SelectedItem = null;
             }
 
-            _samplePickerGrid.Visibility = Visibility.Visible;
+            _patternPickerGrid.Visibility = Visibility.Visible;
         }
 
         public async Task StartSearch(string startingText = null)
@@ -214,7 +214,7 @@ namespace Doji.Controls
         {
             if (args.KeyCode == 27)
             {
-                HideSamplePicker();
+                HidePatternPicker();
             }
         }
 
@@ -237,21 +237,21 @@ namespace Doji.Controls
             }
         }
 
-        private bool SetupSamplePicker()
+        private bool SetupPatternPicker()
         {
-            if (_samplePickerGrid != null)
+            if (_patternPickerGrid != null)
             {
                 return true;
             }
 
-            _samplePickerGrid = GetTemplateChild("SamplePickerGrid") as Grid;
-            _samplePickerGridView = GetTemplateChild("SamplePickerGridView") as GridView;
+            _patternPickerGrid = GetTemplateChild("PatternPickerGrid") as Grid;
+            _patternPickerGridView = GetTemplateChild("PatternPickerGridView") as GridView;
             _contentShadow = GetTemplateChild("ContentShadow") as Border;
 
-            if (_samplePickerGridView != null)
+            if (_patternPickerGridView != null)
             {
-                _samplePickerGridView.ItemClick += SamplePickerGridView_ItemClick;
-                _samplePickerGridView.ChoosingItemContainer += SamplePickerGridView_ChoosingItemContainer;
+                _patternPickerGridView.ItemClick += PatternPickerGridView_ItemClick;
+                _patternPickerGridView.ChoosingItemContainer += PatternPickerGridView_ChoosingItemContainer;
             }
 
             if (_contentShadow != null)
@@ -259,7 +259,7 @@ namespace Doji.Controls
                 _contentShadow.Tapped += ContentShadow_Tapped;
             }
 
-            return _samplePickerGrid != null;
+            return _patternPickerGrid != null;
         }
 
         private void SetupSearch()
@@ -302,9 +302,9 @@ namespace Doji.Controls
         {
             if (e.Key == Windows.System.VirtualKey.Down)
             {
-                if (_samplePickerGrid.Visibility == Visibility.Visible)
+                if (_patternPickerGrid.Visibility == Visibility.Visible)
                 {
-                    _samplePickerGridView.Focus(FocusState.Keyboard);
+                    _patternPickerGridView.Focus(FocusState.Keyboard);
                 }
             }
         }
@@ -331,14 +331,14 @@ namespace Doji.Controls
 
         private async void UpdateSearchSuggestions()
         {
-            var samples = (await Samples.FindSamplesByName(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
-            if (samples.Count() > 0)
+            var patterns = (await Patterns.FindPatternsByName(_searchBox.Text)).OrderBy(s => s.Name).ToArray();
+            if (patterns.Count() > 0)
             {
-                ShowSamplePicker(samples);
+                ShowPatternPicker(patterns);
             }
             else
             {
-                HideSamplePicker();
+                HidePatternPicker();
             }
         }
 
@@ -358,19 +358,19 @@ namespace Doji.Controls
 
         private void ExtendedHamburgerMenu_OptionsItemClick(object sender, ItemClickEventArgs e)
         {
-            HideSamplePicker();
+            HidePatternPicker();
         }
 
         private void ExtendedHamburgerMenu_ItemClick(object sender, ItemClickEventArgs e)
         {
-            if (!SetupSamplePicker())
+            if (!SetupPatternPicker())
             {
                 return;
             }
 
-            if (e.ClickedItem is SampleCategory category)
+            if (e.ClickedItem is PatternCategory category)
             {
-                if (_samplePickerGrid.Visibility != Visibility.Collapsed && SelectedItem == e.ClickedItem)
+                if (_patternPickerGrid.Visibility != Visibility.Collapsed && SelectedItem == e.ClickedItem)
                 {
                     if (_hamburgerButton != null && _hamburgerButton.Visibility == Visibility.Visible)
                     {
@@ -378,30 +378,30 @@ namespace Doji.Controls
                     }
                     else
                     {
-                        HideSamplePicker();
+                        HidePatternPicker();
                     }
                 }
                 else
                 {
-                    ShowSamplePicker(category.Samples);
+                    ShowPatternPicker(category.Patterns);
                 }
             }
         }
 
         private void OnBackRequested(object sender, BackRequestedEventArgs e)
         {
-            if (SetupSamplePicker() && _samplePickerGrid.Visibility == Visibility.Visible)
+            if (SetupPatternPicker() && _patternPickerGrid.Visibility == Visibility.Visible)
             {
-                HideSamplePicker();
+                HidePatternPicker();
                 e.Handled = true;
             }
         }
 
         private async Task SetHamburgerMenuSelection()
         {
-            if (_currentSample != null)
+            if (_currentPattern != null)
             {
-                var category = await Samples.GetCategoryBySample(_currentSample);
+                var category = await Patterns.GetCategoryByPattern(_currentPattern);
 
                 if (Items.Contains(category))
                 {
@@ -418,7 +418,7 @@ namespace Doji.Controls
 
         private void ContentShadow_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            HideSamplePicker();
+            HidePatternPicker();
 
             if (_hamburgerButton != null && _hamburgerButton.Visibility == Visibility.Visible)
             {
@@ -426,7 +426,7 @@ namespace Doji.Controls
             }
         }
 
-        private void SamplePickerGridView_ChoosingItemContainer(Windows.UI.Xaml.Controls.ListViewBase sender, ChoosingItemContainerEventArgs args)
+        private void PatternPickerGridView_ChoosingItemContainer(Windows.UI.Xaml.Controls.ListViewBase sender, ChoosingItemContainerEventArgs args)
         {
             if (args.ItemContainer != null)
             {
@@ -443,7 +443,7 @@ namespace Doji.Controls
 
         private void ContainerItem_Loaded(object sender, RoutedEventArgs e)
         {
-            var itemsPanel = (ItemsWrapGrid)_samplePickerGridView.ItemsPanelRoot;
+            var itemsPanel = (ItemsWrapGrid)_patternPickerGridView.ItemsPanelRoot;
             var itemContainer = (GridViewItem)sender;
             itemContainer.Loaded -= this.ContainerItem_Loaded;
 
@@ -459,18 +459,18 @@ namespace Doji.Controls
                 return;
             }
 
-            var itemIndex = _samplePickerGridView.IndexFromContainer(itemContainer);
+            var itemIndex = _patternPickerGridView.IndexFromContainer(itemContainer);
 
             var referenceIndex = itemsPanel.FirstVisibleIndex;
 
-            if (_samplePickerGridView.SelectedIndex >= 0)
+            if (_patternPickerGridView.SelectedIndex >= 0)
             {
-                referenceIndex = _samplePickerGridView.SelectedIndex;
+                referenceIndex = _patternPickerGridView.SelectedIndex;
             }
 
             var relativeIndex = Math.Abs(itemIndex - referenceIndex);
 
-            if (itemContainer.Content != CurrentSample && itemIndex >= 0 && itemIndex >= itemsPanel.FirstVisibleIndex && itemIndex <= itemsPanel.LastVisibleIndex)
+            if (itemContainer.Content != CurrentPattern && itemIndex >= 0 && itemIndex >= itemsPanel.FirstVisibleIndex && itemIndex <= itemsPanel.LastVisibleIndex)
             {
                 var staggerDelay = TimeSpan.FromMilliseconds(relativeIndex * 30);
 
@@ -494,7 +494,7 @@ namespace Doji.Controls
             }
 
             var button = (Button)sender;
-            var sample = button.DataContext as Sample;
+            var pattern = button.DataContext as Pattern;
 
             var container = button.FindAscendant<GridViewItem>();
             if (container == null)
@@ -521,11 +521,11 @@ namespace Doji.Controls
 
             VisualEx.SetCenterPoint(_moreInfoContent, new Vector3((float)centerX, (float)centerY, 0).ToString());
 
-            // _samplePickerGridView.PrepareConnectedAnimation("sample_icon", sample, "SampleIcon");
-            _moreInfoContent.DataContext = sample;
+            // _patternPickerGridView.PrepareConnectedAnimation("pattern_icon", pattern, "PatternIcon");
+            _moreInfoContent.DataContext = pattern;
             _moreInfoCanvas.Visibility = Visibility.Visible;
 
-            // var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("sample_icon");
+            // var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("pattern_icon");
             // var result = animation.TryStart(_moreInfoImage);
         }
 
@@ -533,15 +533,15 @@ namespace Doji.Controls
         {
             if (_isCreatorsUpdateOrAbove && _moreInfoImage != null && _moreInfoContent.DataContext != null)
             {
-                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("sample_icon", _moreInfoImage);
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("pattern_icon", _moreInfoImage);
             }
 
             _moreInfoCanvas.Visibility = Visibility.Collapsed;
 
             if (_isCreatorsUpdateOrAbove && _moreInfoImage != null && _moreInfoContent.DataContext != null)
             {
-                var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("sample_icon");
-                var t = _samplePickerGridView.TryStartConnectedAnimationAsync(animation, _moreInfoContent.DataContext, "SampleIcon");
+                var animation = ConnectedAnimationService.GetForCurrentView().GetAnimation("pattern_icon");
+                var t = _patternPickerGridView.TryStartConnectedAnimationAsync(animation, _moreInfoContent.DataContext, "PatternIcon");
             }
 
             _moreInfoContent.DataContext = null;
@@ -587,10 +587,10 @@ namespace Doji.Controls
             }
         }
 
-        private void SamplePickerGridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void PatternPickerGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            HideSamplePicker();
-            SamplePickerItemClick?.Invoke(this, e);
+            HidePatternPicker();
+            PatternPickerItemClick?.Invoke(this, e);
 
             if (_hamburgerButton != null && _hamburgerButton.Visibility == Visibility.Visible)
             {
@@ -631,7 +631,7 @@ namespace Doji.Controls
                 _titleTextBlock.Visibility = Visibility.Collapsed;
             }
 
-            ShowSamplePicker();
+            ShowPatternPicker();
 
             new RotationInDegreesAnimation() { To = 90, Duration = TimeSpan.FromMilliseconds(300) }.StartAnimation(_hamburgerButton.Content as UIElement);
         }
@@ -654,7 +654,7 @@ namespace Doji.Controls
                 _titleTextBlock.Visibility = Visibility.Visible;
             }
 
-            HideSamplePicker();
+            HidePatternPicker();
             new RotationInDegreesAnimation() { To = 0, Duration = TimeSpan.FromMilliseconds(300) }.StartAnimation(_hamburgerButton.Content as UIElement);
         }
     }

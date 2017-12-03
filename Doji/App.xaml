@@ -366,7 +366,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="SampleAppHeaderToggleButtonStyle"
+        <Style x:Key="PatternAppHeaderToggleButtonStyle"
                TargetType="ToggleButton">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}" />
@@ -583,7 +583,7 @@
             </Setter>
         </Style>
 
-        <DataTemplate x:Key="SampleTemplate">
+        <DataTemplate x:Key="PatternTemplate">
             <StackPanel Padding="16,28, 16, 10"
                         Background="Transparent">
                 <Grid Width="120"
@@ -599,7 +599,7 @@
                         <Border></Border>
                     </toolkitControls:DropShadowPanel>
                     <Border Background="#E6E6E6">
-                        <Image x:Name="SampleIcon" Source="{Binding Icon}" />
+                        <Image x:Name="PatternIcon" Source="{Binding Icon}" />
                     </Border>
                 </Grid>
 
@@ -676,7 +676,7 @@
 
                                 <Border x:Name="ContentShadow"
                                         Background="#33000000"
-                                        Visibility="{Binding Visibility, ElementName=SamplePickerGrid}">
+                                        Visibility="{Binding Visibility, ElementName=PatternPickerGrid}">
                                     <interactivity:Interaction.Behaviors>
                                         <behaviors:Blur AutomaticallyStart="True"
                                                         Delay="0"
@@ -691,7 +691,7 @@
                                     </animations:Implicit.HideAnimations>
                                 </Border>
 
-                                <Grid x:Name="SamplePickerGrid"
+                                <Grid x:Name="PatternPickerGrid"
                                       x:DeferLoadStrategy="Lazy"
                                       Visibility="Collapsed"
                                       VerticalAlignment="Top">
@@ -705,13 +705,13 @@
                                         <Border Height="1"></Border>
                                     </toolkitControls:DropShadowPanel>
 
-                                    <Border x:Name="SamplePickerGridBackground" 
+                                    <Border x:Name="PatternPickerGridBackground" 
                                             local:XAMLHelper.Background="#F3F3F3F3"></Border>
-                                    <GridView x:Name="SamplePickerGridView"
+                                    <GridView x:Name="PatternPickerGridView"
                                               IsItemClickEnabled="True"
                                               animations:ReorderGridAnimation.Duration="200"
                                               ItemContainerStyle="{StaticResource SecondaryHambugerMenuItemStyle}"
-                                              ItemTemplate="{StaticResource SampleTemplate}"
+                                              ItemTemplate="{StaticResource PatternTemplate}"
                                               SelectionMode="Single"
                                               ItemContainerTransitions="{x:Null}"
                                               Transitions="{x:Null}">
@@ -984,7 +984,7 @@
                                             <Setter Target="OptionsListView.Visibility" Value="Visible" />
                                             <Setter Target="SearchGrid.Visibility" Value="Visible" />
                                             <Setter Target="TitleTextBlock.Visibility" Value="Visible" />
-                                            <Setter Target="SamplePickerGrid.Visibility" Value="Collapsed"></Setter>
+                                            <Setter Target="PatternPickerGrid.Visibility" Value="Collapsed"></Setter>
                                         </VisualState.Setters>
                                     </VisualState>
                                     <VisualState x:Name="WideState">

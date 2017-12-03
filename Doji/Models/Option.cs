@@ -22,6 +22,6 @@ namespace Doji
 
         public Type PageType { get; set; }
 
-        public SampleCategory Tag { get; set; }
+        public PatternCategory Tag { get; set; }
     }
 }

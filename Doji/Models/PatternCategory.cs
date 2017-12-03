@@ -10,21 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-
-namespace Doji.Common
+namespace Doji
 {
-    /// <summary>
-    /// Command with a name for Pattern Shell Commands.
-    /// </summary>
-    public class PatternCommand : DelegateCommand
+    public class PatternCategory
     {
-        public string Label { get; set; }
+        public string Name { get; set; }
 
-        public PatternCommand(string name, Action action)
-            : base(action)
-        {
-            Label = name;
-        }
+        public Pattern[] Patterns { get; set; }
+
+        public string Icon { get; set; }
     }
 }

@@ -48,8 +48,8 @@ namespace Doji
         private bool _lastRenderedProperties = true;
         private ThreadPoolTimer _autocompileTimer;
 
-        private DateTime _timeSampleEditedFirst = DateTime.MinValue;
-        private DateTime _timeSampleEditedLast = DateTime.MinValue;
+        private DateTime _timePatternEditedFirst = DateTime.MinValue;
+        private DateTime _timePatternEditedLast = DateTime.MinValue;
         private bool _xamlCodeRendererSupported = false;
 
         public bool DisplayWaitRing
@@ -57,7 +57,7 @@ namespace Doji
             set { waitRing.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
         }
 
-        public ObservableCollection<SampleCommand> Commands { get; } = new ObservableCollection<SampleCommand>();
+        public ObservableCollection<PatternCommand> Commands { get; } = new ObservableCollection<PatternCommand>();
 
         public Shell()
         {
@@ -82,34 +82,34 @@ namespace Doji
         }
 
         /// <summary>
-        /// Navigates to a Sample via a deep link.
+        /// Navigates to a Pattern via a deep link.
         /// </summary>
-        /// <param name="deepLink">The deep link. Specified as protocol://[collectionName]?sample=[sampleName]</param>
+        /// <param name="deepLink">The deep link. Specified as protocol://[collectionName]?pattern=[patternName]</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
-        public async Task NavigateToSampleAsync(string deepLink)
+        public async Task NavigateToPatternAsync(string deepLink)
         {
             var parser = DeepLinkParser.Create(deepLink);
-            var targetSample = await Samples.GetSampleByName(parser["sample"]);
-            if (targetSample != null)
+            var targetPattern = await Patterns.GetPatternByName(parser["pattern"]);
+            if (targetPattern != null)
             {
-                NavigateToSample(targetSample);
+                NavigateToPattern(targetPattern);
             }
         }
 
-        public void NavigateToSample(Sample sample)
+        public void NavigateToPattern(Pattern pattern)
         {
-            var pageType = Type.GetType("Doji.SamplePages." + sample.Type);
+            var pageType = Type.GetType("Doji.PatternPages." + pattern.Type);
 
             if (pageType != null)
             {
                 InfoAreaPivot.Items.Clear();
-                NavigationFrame.Navigate(pageType, sample.Name);
+                NavigationFrame.Navigate(pageType, pattern.Name);
             }
         }
 
         public void RegisterNewCommand(string name, RoutedEventHandler action)
         {
-            Commands.Add(new SampleCommand(name, () =>
+            Commands.Add(new PatternCommand(name, () =>
             {
                 try
                 {
@@ -129,16 +129,16 @@ namespace Doji
 
         public async Task RefreshXamlRenderAsync()
         {
-            if (HamburgerMenu.CurrentSample != null)
+            if (HamburgerMenu.CurrentPattern != null)
             {
                 var code = string.Empty;
                 if (InfoAreaPivot.SelectedItem == PropertiesPivotItem)
                 {
-                    code = HamburgerMenu.CurrentSample.BindedXamlCode;
+                    code = HamburgerMenu.CurrentPattern.BindedXamlCode;
                 }
                 else
                 {
-                    code = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                    code = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
                 }
 
                 if (!string.IsNullOrWhiteSpace(code))
@@ -155,10 +155,10 @@ namespace Doji
             NavigationFrame.Navigated += NavigationFrameOnNavigated;
             SystemNavigationManager.GetForCurrentView().BackRequested += OnBackRequested;
 
-            // Get list of samples
-            var sampleCategories = (await Samples.GetCategoriesAsync()).ToList();
+            // Get list of patterns
+            var patternCategories = (await Patterns.GetCategoriesAsync()).ToList();
 
-            HamburgerMenu.ItemsSource = sampleCategories;
+            HamburgerMenu.ItemsSource = patternCategories;
 
             // Options
             HamburgerMenu.OptionsItemsSource = new[]
@@ -172,24 +172,24 @@ namespace Doji
             if (!string.IsNullOrWhiteSpace(e?.Parameter?.ToString()))
             {
                 var parser = DeepLinkParser.Create(e.Parameter.ToString());
-                var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
-                if (targetSample != null)
+                var targetPattern = await Pattern.FindAsync(parser.Root, parser["pattern"]);
+                if (targetPattern != null)
                 {
-                    NavigateToSample(targetSample);
+                    NavigateToPattern(targetPattern);
                 }
             }
         }
 
         private async void NavigationFrame_Navigating(object sender, NavigatingCancelEventArgs navigationEventArgs)
         {
-            ProcessSampleEditorTime();
+            ProcessPatternEditorTime();
 
-            SampleCategory category;
+            PatternCategory category;
             if (navigationEventArgs.Parameter == null)
             {
                 DataContext = null;
-                HamburgerMenu.CurrentSample = null;
-                category = navigationEventArgs.Parameter as SampleCategory;
+                HamburgerMenu.CurrentPattern = null;
+                category = navigationEventArgs.Parameter as PatternCategory;
 
                 if (category != null)
                 {
@@ -208,20 +208,20 @@ namespace Doji
                 Commands.Clear();
                 ShowInfoArea();
 
-                var sampleName = navigationEventArgs.Parameter.ToString();
-                HamburgerMenu.CurrentSample = await Samples.GetSampleByName(sampleName);
-                DataContext = HamburgerMenu.CurrentSample;
+                var patternName = navigationEventArgs.Parameter.ToString();
+                HamburgerMenu.CurrentPattern = await Patterns.GetPatternByName(patternName);
+                DataContext = HamburgerMenu.CurrentPattern;
 
-                if (HamburgerMenu.CurrentSample == null)
+                if (HamburgerMenu.CurrentPattern == null)
                 {
                     HideInfoArea();
                     return;
                 }
 
-                category = await Samples.GetCategoryBySample(HamburgerMenu.CurrentSample);
-                await Samples.PushRecentSample(HamburgerMenu.CurrentSample);
+                category = await Patterns.GetCategoryByPattern(HamburgerMenu.CurrentPattern);
+                await Patterns.PushRecentPattern(HamburgerMenu.CurrentPattern);
 
-                var propertyDesc = HamburgerMenu.CurrentSample.PropertyDescriptor;
+                var propertyDesc = HamburgerMenu.CurrentPattern.PropertyDescriptor;
 
                 InfoAreaPivot.Items.Clear();
 
@@ -230,25 +230,25 @@ namespace Doji
                     _xamlRenderer.DataContext = propertyDesc.Expando;
                 }
 
-                Title.Text = HamburgerMenu.CurrentSample.Name;
+                Title.Text = HamburgerMenu.CurrentPattern.Name;
 
                 if (propertyDesc != null && propertyDesc.Options.Count > 0)
                 {
                     InfoAreaPivot.Items.Add(PropertiesPivotItem);
                 }
 
-                if (HamburgerMenu.CurrentSample.HasXAMLCode)
+                if (HamburgerMenu.CurrentPattern.HasXAMLCode)
                 {
-                    if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() != DeviceFormFactor.Desktop || HamburgerMenu.CurrentSample.DisableXamlEditorRendering)
+                    if (AnalyticsInfo.VersionInfo.GetDeviceFormFactor() != DeviceFormFactor.Desktop || HamburgerMenu.CurrentPattern.DisableXamlEditorRendering)
                     {
                         // Only makes sense (and works) for now to show Live Xaml on Desktop, so fallback to old system here otherwise.
-                        XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                        XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
 
                         InfoAreaPivot.Items.Add(XamlReadOnlyPivotItem);
                     }
                     else
                     {
-                        XamlCodeRenderer.Text = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                        XamlCodeRenderer.Text = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
 
                         InfoAreaPivot.Items.Add(XamlPivotItem);
 
@@ -258,21 +258,21 @@ namespace Doji
                     InfoAreaPivot.SelectedIndex = 0;
                 }
 
-                if (HamburgerMenu.CurrentSample.HasCSharpCode)
+                if (HamburgerMenu.CurrentPattern.HasCSharpCode)
                 {
-                    CSharpCodeRenderer.CSharpSource = await this.HamburgerMenu.CurrentSample.GetCSharpSourceAsync();
+                    CSharpCodeRenderer.CSharpSource = await this.HamburgerMenu.CurrentPattern.GetCSharpSourceAsync();
                     InfoAreaPivot.Items.Add(CSharpPivotItem);
                 }
 
-                if (HamburgerMenu.CurrentSample.HasJavaScriptCode)
+                if (HamburgerMenu.CurrentPattern.HasJavaScriptCode)
                 {
-                    JavaScriptCodeRenderer.CSharpSource = await this.HamburgerMenu.CurrentSample.GetJavaScriptSourceAsync();
+                    JavaScriptCodeRenderer.CSharpSource = await this.HamburgerMenu.CurrentPattern.GetJavaScriptSourceAsync();
                     InfoAreaPivot.Items.Add(JavaScriptPivotItem);
                 }
 
-                if (!string.IsNullOrEmpty(HamburgerMenu.CurrentSample.CodeUrl))
+                if (!string.IsNullOrEmpty(HamburgerMenu.CurrentPattern.CodeUrl))
                 {
-                    GitHub.NavigateUri = new Uri(HamburgerMenu.CurrentSample.CodeUrl);
+                    GitHub.NavigateUri = new Uri(HamburgerMenu.CurrentPattern.CodeUrl);
                     GitHub.Visibility = Visibility.Visible;
                 }
                 else
@@ -280,9 +280,9 @@ namespace Doji
                     GitHub.Visibility = Visibility.Collapsed;
                 }
 
-                if (HamburgerMenu.CurrentSample.HasDocumentation)
+                if (HamburgerMenu.CurrentPattern.HasDocumentation)
                 {
-                    var docs = await this.HamburgerMenu.CurrentSample.GetDocumentationAsync();
+                    var docs = await this.HamburgerMenu.CurrentPattern.GetDocumentationAsync();
                     if (!string.IsNullOrWhiteSpace(docs))
                     {
                         DocumentationTextblock.Text = docs;
@@ -295,8 +295,8 @@ namespace Doji
                     HideInfoArea();
                 }
 
-                HamburgerMenu.Title = $"{category.Name} > {HamburgerMenu.CurrentSample?.Name}";
-                ApplicationView.SetTitle(this, $"{category.Name} > {HamburgerMenu.CurrentSample?.Name}");
+                HamburgerMenu.Title = $"{category.Name} > {HamburgerMenu.CurrentPattern?.Name}";
+                ApplicationView.SetTitle(this, $"{category.Name} > {HamburgerMenu.CurrentPattern?.Name}");
             }
         }
 
@@ -305,7 +305,7 @@ namespace Doji
             InfoAreaGrid.Visibility = Visibility.Collapsed;
             RootGrid.ColumnDefinitions[1].Width = GridLength.Auto;
             RootGrid.RowDefinitions[1].Height = GridLength.Auto;
-            HamburgerMenu.CurrentSample = null;
+            HamburgerMenu.CurrentPattern = null;
             Commands.Clear();
             Splitter.Visibility = Visibility.Collapsed;
             HamburgerMenu.Title = string.Empty;
@@ -348,9 +348,9 @@ namespace Doji
                         ExpandButton.Content = "";
 
                         // Update Read-Only XAML tab when switching back to show changes to TwoWay Bound Properties
-                        if (HamburgerMenu.CurrentSample?.HasXAMLCode == true && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
+                        if (HamburgerMenu.CurrentPattern?.HasXAMLCode == true && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
                         {
-                            XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                            XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
                         }
                     }
 
@@ -413,12 +413,12 @@ namespace Doji
                 ExpandOrCloseProperties();
             }
 
-            if (HamburgerMenu.CurrentSample != null && HamburgerMenu.CurrentSample.HasXAMLCode)
+            if (HamburgerMenu.CurrentPattern != null && HamburgerMenu.CurrentPattern.HasXAMLCode)
             {
                 this._lastRenderedProperties = true;
 
-                // Called to load the sample initially as we don't get an Item Pivot Selection Changed with Sample Loaded yet.
-                var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentSample.BindedXamlCode);
+                // Called to load the pattern initially as we don't get an Item Pivot Selection Changed with Pattern Loaded yet.
+                var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentPattern.BindedXamlCode);
             }
         }
 
@@ -448,13 +448,13 @@ namespace Doji
         {
             if (InfoAreaPivot.SelectedItem != null)
             {
-                if (DataContext is Sample sample)
+                if (DataContext is Pattern pattern)
                 {
-                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, sample.Name);
+                    TrackingManager.TrackEvent("PropertyGrid", (InfoAreaPivot.SelectedItem as FrameworkElement)?.Name, pattern.Name);
                 }
             }
 
-            if (HamburgerMenu.CurrentSample == null)
+            if (HamburgerMenu.CurrentPattern == null)
             {
                 return;
             }
@@ -462,47 +462,47 @@ namespace Doji
             if (InfoAreaPivot.SelectedItem == PropertiesPivotItem)
             {
                 // If we switch to the Properties Panel, we want to use a binded version of the Xaml Code.
-                if (HamburgerMenu.CurrentSample.HasXAMLCode)
+                if (HamburgerMenu.CurrentPattern.HasXAMLCode)
                 {
                     _lastRenderedProperties = true;
 
-                    var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentSample.BindedXamlCode);
+                    var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentPattern.BindedXamlCode);
                 }
 
                 return;
             }
 
-            if (HamburgerMenu.CurrentSample.HasXAMLCode && InfoAreaPivot.SelectedItem == XamlPivotItem && _lastRenderedProperties)
+            if (HamburgerMenu.CurrentPattern.HasXAMLCode && InfoAreaPivot.SelectedItem == XamlPivotItem && _lastRenderedProperties)
             {
                 // Use this flag so we don't re-render the XAML tab if we're switching from tabs other than the properties one.
                 _lastRenderedProperties = false;
 
                 // If we switch to the Live Preview, then we want to use the Value based Text
-                XamlCodeRenderer.Text = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                XamlCodeRenderer.Text = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
 
-                var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentSample.UpdatedXamlCode);
+                var t = UpdateXamlRenderAsync(HamburgerMenu.CurrentPattern.UpdatedXamlCode);
                 await XamlCodeRenderer.RevealPositionAsync(new Position(1, 1));
 
                 XamlCodeRenderer.Focus(FocusState.Programmatic);
                 return;
             }
 
-            if (HamburgerMenu.CurrentSample.HasXAMLCode && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
+            if (HamburgerMenu.CurrentPattern.HasXAMLCode && InfoAreaPivot.SelectedItem == XamlReadOnlyPivotItem)
             {
                 // Update Read-Only XAML tab on non-desktop devices to show changes to Properties
-                XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentSample.UpdatedXamlCode;
+                XamlReadOnlyCodeRenderer.XamlSource = HamburgerMenu.CurrentPattern.UpdatedXamlCode;
             }
 
-            if (HamburgerMenu.CurrentSample.HasCSharpCode && InfoAreaPivot.SelectedItem == CSharpPivotItem)
+            if (HamburgerMenu.CurrentPattern.HasCSharpCode && InfoAreaPivot.SelectedItem == CSharpPivotItem)
             {
-                CSharpCodeRenderer.CSharpSource = await HamburgerMenu.CurrentSample.GetCSharpSourceAsync();
+                CSharpCodeRenderer.CSharpSource = await HamburgerMenu.CurrentPattern.GetCSharpSourceAsync();
 
                 return;
             }
 
-            if (HamburgerMenu.CurrentSample.HasJavaScriptCode && InfoAreaPivot.SelectedItem == JavaScriptPivotItem)
+            if (HamburgerMenu.CurrentPattern.HasJavaScriptCode && InfoAreaPivot.SelectedItem == JavaScriptPivotItem)
             {
-                JavaScriptCodeRenderer.JavaScriptSource = await HamburgerMenu.CurrentSample.GetJavaScriptSourceAsync();
+                JavaScriptCodeRenderer.JavaScriptSource = await HamburgerMenu.CurrentPattern.GetJavaScriptSourceAsync();
 
                 return;
             }
@@ -525,9 +525,9 @@ namespace Doji
             TrackingManager.TrackEvent("Link", GitHub.NavigateUri.ToString());
         }
 
-        private void HamburgerMenu_SamplePickerItemClick(object sender, ItemClickEventArgs e)
+        private void HamburgerMenu_PatternPickerItemClick(object sender, ItemClickEventArgs e)
         {
-            NavigateToSample(e.ClickedItem as Sample);
+            NavigateToPattern(e.ClickedItem as Pattern);
         }
 
         private Visibility GreaterThanZero(int value)
@@ -650,12 +650,12 @@ namespace Doji
                         {
                             var t = UpdateXamlRenderAsync(XamlCodeRenderer.Text);
 
-                            if (_timeSampleEditedFirst == DateTime.MinValue)
+                            if (_timePatternEditedFirst == DateTime.MinValue)
                             {
-                                _timeSampleEditedFirst = DateTime.Now;
+                                _timePatternEditedFirst = DateTime.Now;
                             }
 
-                            _timeSampleEditedLast = DateTime.Now;
+                            _timePatternEditedLast = DateTime.Now;
                         });
                     }, TimeSpan.FromSeconds(0.5));
             }
@@ -676,25 +676,25 @@ namespace Doji
 #endif
         }
 
-        private void ProcessSampleEditorTime()
+        private void ProcessPatternEditorTime()
         {
-            if (HamburgerMenu.CurrentSample != null &&
-                HamburgerMenu.CurrentSample.HasXAMLCode &&
+            if (HamburgerMenu.CurrentPattern != null &&
+                HamburgerMenu.CurrentPattern.HasXAMLCode &&
                 _xamlCodeRendererSupported)
             {
-                if (_timeSampleEditedFirst != DateTime.MinValue &&
-                    _timeSampleEditedLast != DateTime.MinValue)
+                if (_timePatternEditedFirst != DateTime.MinValue &&
+                    _timePatternEditedLast != DateTime.MinValue)
                 {
-                    int secondsEdditingSample = (int)Math.Floor((_timeSampleEditedLast - _timeSampleEditedFirst).TotalSeconds);
-                    TrackingManager.TrackEvent("xamleditor", "edited", HamburgerMenu.CurrentSample.Name, secondsEdditingSample);
+                    int secondsEdditingPattern = (int)Math.Floor((_timePatternEditedLast - _timePatternEditedFirst).TotalSeconds);
+                    TrackingManager.TrackEvent("xamleditor", "edited", HamburgerMenu.CurrentPattern.Name, secondsEdditingPattern);
                 }
                 else
                 {
-                    TrackingManager.TrackEvent("xamleditor", "not_edited", HamburgerMenu.CurrentSample.Name);
+                    TrackingManager.TrackEvent("xamleditor", "not_edited", HamburgerMenu.CurrentPattern.Name);
                 }
             }
 
-            _timeSampleEditedFirst = _timeSampleEditedLast = DateTime.MinValue;
+            _timePatternEditedFirst = _timePatternEditedLast = DateTime.MinValue;
         }
     }
 }

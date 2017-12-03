@@ -21,17 +21,17 @@
             <Setter Property="animations:Implicit.Animations" Value="{StaticResource ImplicitOffset}"></Setter>
         </Style>
 
-        <DataTemplate x:DataType="doji:Sample" x:Key="RecentSampleTemplate">
+        <DataTemplate x:DataType="doji:Pattern" x:Key="RecentPatternTemplate">
             <HyperlinkButton Width="267"
                              HorizontalContentAlignment="Left"
                              Style="{StaticResource AboutHyperlinkButtonStyle}"
-                             Click="RecentSample_Click">
+                             Click="RecentPattern_Click">
                 <TextBlock Text="{x:Bind Name}"></TextBlock>
             </HyperlinkButton>
         </DataTemplate>
 
-        <DataTemplate x:DataType="doji:Sample" x:Key="NewSampleTemplate">
-            <HyperlinkButton Width="267" HorizontalContentAlignment="Left" Style="{StaticResource AboutHyperlinkButtonStyle}" Click="NewSample_Click">
+        <DataTemplate x:DataType="doji:Pattern" x:Key="NewPatternTemplate">
+            <HyperlinkButton Width="267" HorizontalContentAlignment="Left" Style="{StaticResource AboutHyperlinkButtonStyle}" Click="NewPattern_Click">
                 <TextBlock Text="{x:Bind Name}"></TextBlock>
             </HyperlinkButton>
         </DataTemplate>
@@ -135,11 +135,11 @@
                                            Opacity="0.5" 
                                            FontFamily="Segoe UI" 
                                            FontSize="12" 
-                                           Visibility="{x:Bind local:About.VisibleIfCollectionEmpty(RecentSamples), Mode=OneWay}"></TextBlock>
-                                    <ItemsControl x:Name="RecentSamplesItemsControl"
+                                           Visibility="{x:Bind local:About.VisibleIfCollectionEmpty(RecentPatterns), Mode=OneWay}"></TextBlock>
+                                    <ItemsControl x:Name="RecentPatternsItemsControl"
                                                   ItemsPanel="{StaticResource ItemsWrapGridHorizontalTemplate}"
-                                                  ItemsSource="{x:Bind RecentSamples, Mode=OneWay}"
-                                                  ItemTemplate="{StaticResource RecentSampleTemplate}"
+                                                  ItemsSource="{x:Bind RecentPatterns, Mode=OneWay}"
+                                                  ItemTemplate="{StaticResource RecentPatternTemplate}"
                                                   ItemContainerStyle="{StaticResource ItemsContainerStyle}">
                                     </ItemsControl>
                                 </Grid>
@@ -157,7 +157,7 @@
 
                             <StackPanel x:Name="WhatNewPanel" Margin="0,0,0,48" animations:Implicit.Animations="{StaticResource ImplicitOffset}">
                                 <TextBlock FontSize="20" FontFamily="Segoe UI" FontWeight="Normal" Text="{x:Bind LandingPageLinks.NewSectionTitle, Mode=OneWay}"></TextBlock>
-                                <ItemsControl x:Name="WhatNewItemsControl" Margin="0,16,0,0" ItemsSource="{x:Bind NewSamples, Mode=OneWay}" ItemTemplate="{StaticResource NewSampleTemplate}"></ItemsControl>
+                                <ItemsControl x:Name="WhatNewItemsControl" Margin="0,16,0,0" ItemsSource="{x:Bind NewPatterns, Mode=OneWay}" ItemTemplate="{StaticResource NewPatternTemplate}"></ItemsControl>
                             </StackPanel>
 
                             <StackPanel x:Name="ReleaseNotesPanel" animations:Implicit.Animations="{StaticResource ImplicitOffset}">
@@ -251,7 +251,7 @@
                         <Setter Target="ReleaseNotesPanel.Margin" Value="0,0,0,48" />
 
                         <Setter Target="WhatNewItemsControl.MinHeight" Value="0" />
-                        <Setter Target="RecentSamplesItemsControl.MinHeight" Value="0" />
+                        <Setter Target="RecentPatternsItemsControl.MinHeight" Value="0" />
                         <Setter Target="RightBorder.Visibility" Value="Collapsed"></Setter>
 
                     </VisualState.Setters>
@@ -288,7 +288,7 @@
                         <Setter Target="ReleaseNotesPanel.Margin" Value="0,48,0,0" />
 
                         <Setter Target="WhatNewItemsControl.MinHeight" Value="130" />
-                        <Setter Target="RecentSamplesItemsControl.MinHeight" Value="130" />
+                        <Setter Target="RecentPatternsItemsControl.MinHeight" Value="130" />
                         <Setter Target="RightBorder.Visibility" Value="Visible"></Setter>
 
                     </VisualState.Setters>
