@@ -3,7 +3,7 @@ title: Abandoned Baby Bottom Pattern
 author: phmatray
 ms.date: 12/03/2017
 description: Three candle chart formation that has a solid track record of being an accurate bullish reversal pattern.
-keywords: windows 10, uwp, doji, PCandleStick Patterns, Reversal Pattern, Three Candle Pattern, Abandoned Baby Bottom Pattern
+keywords: windows 10, uwp, doji, CandleStick Patterns, Reversal Pattern, Three Candle Pattern, Abandoned Baby Bottom Pattern
 ---
 
 # Abandoned Baby Bottom Pattern

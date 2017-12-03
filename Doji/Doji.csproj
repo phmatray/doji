@@ -173,6 +173,7 @@
     <Content Include="Assets\Html\Xaml.html" />
     <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Photos\ales-krivec-43430.jpg" />
+    <Content Include="Assets\Photos\reflection-849159_1920.jpg" />
     <Content Include="Icons\Helpers.png" />
     <Content Include="SamplePages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
     <Content Include="SamplePages\Hello\Hello.png" />

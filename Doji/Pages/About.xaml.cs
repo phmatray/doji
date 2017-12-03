@@ -295,7 +295,7 @@ namespace Doji.Pages
         {
             var background = new Image()
             {
-                Source = new BitmapImage(new Uri("ms-appx:///Assets/Photos/ales-krivec-43430.jpg")),
+                Source = new BitmapImage(new Uri("ms-appx:///Assets/Photos/reflection-849159_1920.jpg")),
                 Stretch = Windows.UI.Xaml.Media.Stretch.UniformToFill
             };
 

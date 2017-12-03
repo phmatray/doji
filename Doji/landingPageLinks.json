@@ -35,32 +35,12 @@
       "title": "Useful links",
       "links": [
         {
-          "title": "Developer Center",
-          "url": "https://developer.microsoft.com/windows/"
+          "title": "Coin market cap",
+          "url": "https://coinmarketcap.com"
         },
         {
-          "title": "Get started with Windows apps",
-          "url": "https://developer.microsoft.com/windows/apps/getstarted"
-        },
-        {
-          "title": "Windows apps design",
-          "url": "https://developer.microsoft.com/en-us/windows/apps/design"
-        },
-        {
-          "title": "Code samples",
-          "url": "https://developer.microsoft.com/en-us/windows/samples"
-        },
-        {
-          "title": "UWP app samples",
-          "url": "https://github.com/Microsoft/Windows-universal-samples"
-        },
-        {
-          "title": "Windows Template Studio",
-          "url": "https://github.com/microsoft/windowsTemplateStudio"
-        },
-        {
-          "title": "UI for UWP",
-          "url": "https://github.com/telerik/ui-for-uwp"
+          "title": "Bitcoin talk",
+          "url": "https://bitcointalk.org/"
         }
       ]
     }

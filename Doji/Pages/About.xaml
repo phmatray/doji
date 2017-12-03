@@ -177,14 +177,8 @@
                                 <TextBlock FontSize="20" FontFamily="Segoe UI" FontWeight="Normal">About the App</TextBlock>
                                 <ItemsControl Margin="0,16,0,0">
                                     <TextBlock x:Name="Version" FontSize="12" Margin="0,0,0,10"></TextBlock>
-                                    <HyperlinkButton Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="http://www.newtonsoft.com/json" Click="Link_Clicked">
-                                        <TextBlock>Newtonsoft Json (Dependency)</TextBlock>
-                                    </HyperlinkButton>
-                                    <HyperlinkButton Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="https://github.com/google/code-prettify" Click="Link_Clicked">
-                                        <TextBlock>Code Prettify (Dependency)</TextBlock>
-                                    </HyperlinkButton>
-                                    <HyperlinkButton Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="https://unsplash.com/photos/GfLUxuWZg0w" Click="Link_Clicked">
-                                        <TextBlock>Background photo by Ales Krivec</TextBlock>
+                                    <HyperlinkButton Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="https://pixabay.com/fr/users/SuthumW-1142504/" Click="Link_Clicked">
+                                        <TextBlock>Background photo by SuthumW</TextBlock>
                                     </HyperlinkButton>
                                 </ItemsControl>
                             </StackPanel>
@@ -204,9 +198,9 @@
                                 Margin="0,48"
                                 animations:Implicit.Animations="{StaticResource ImplicitOffset}"></Border>
 
-                        <HyperlinkButton animations:Implicit.Animations="{StaticResource ImplicitOffset}" x:Name="PrivacyButton" Grid.Row="9" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="https://go.microsoft.com/fwlink/?LinkId=521839">
+                        <!--<HyperlinkButton animations:Implicit.Animations="{StaticResource ImplicitOffset}" x:Name="PrivacyButton" Grid.Row="9" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Style="{StaticResource AboutHyperlinkButtonStyle}" NavigateUri="https://go.microsoft.com/fwlink/?LinkId=521839">
                             <TextBlock>Privacy statement</TextBlock>
-                        </HyperlinkButton>
+                        </HyperlinkButton>-->
 
 
                     </Grid>
