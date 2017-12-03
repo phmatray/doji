@@ -11,6 +11,13 @@
         //"CodeFile": "AbandonedBabyBottomPatternCode.bind",
         "Icon": "/PatternPages/AbandonedBabyBottomPattern/AbandonedBabyBottomPattern.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AbandonedBabyBottomPattern.md"
+      },
+      {
+        "Name": "IdenticalThreeCrowsPattern",
+        "Type": "IdenticalThreeCrowsPatternPage",
+        "About": "The Identical 3 Crows candlestick pattern is a three-candle bearish reversal pattern signifying a change in trend.",
+        "Icon": "/PatternPages/IdenticalThreeCrowsPattern/IdenticalThreeCrowsPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/IdenticalThreeCrowsPattern.md"
       }
     ]
   }
