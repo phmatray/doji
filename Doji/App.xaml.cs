@@ -40,10 +40,10 @@ namespace Doji
                 {
                     // Launching via protocol link
                     var parser = DeepLinkParser.Create(args);
-                    var targetSample = await Sample.FindAsync(parser.Root, parser["sample"]);
-                    if (targetSample != null)
+                    var targetPattern = await Pattern.FindAsync(parser.Root, parser["pattern"]);
+                    if (targetPattern != null)
                     {
-                        Shell.Current?.NavigateToSample(targetSample);
+                        Shell.Current?.NavigateToPattern(targetPattern);
                     }
                 }
                 catch (Exception ex)

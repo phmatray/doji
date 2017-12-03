@@ -19,8 +19,8 @@ namespace Doji
         [JsonProperty("new-section-title")]
         public string NewSectionTitle { get; set; }
 
-        [JsonProperty("new-samples")]
-        public string[] NewSamples { get; set; }
+        [JsonProperty("new-patterns")]
+        public string[] NewPatterns { get; set; }
 
         [JsonProperty("resources")]
         public LandingPageResource[] Resources { get; set; }

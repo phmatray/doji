@@ -24,7 +24,7 @@
 
 
         <DataTemplate x:Key="HorizontalItemTemplate"
-                      x:DataType="local:SampleCategory">
+                      x:DataType="local:PatternCategory">
             <Grid>
                 <TextBlock Grid.Column="1"
                            VerticalAlignment="Center"
@@ -51,7 +51,7 @@
 
     <controlsLocal:ExtendedHamburgerMenu x:Name="HamburgerMenu"
                                          ItemTemplate="{StaticResource HorizontalItemTemplate}"
-                                         SamplePickerItemClick="HamburgerMenu_SamplePickerItemClick"
+                                         PatternPickerItemClick="HamburgerMenu_PatternPickerItemClick"
                                          OptionsItemClick="HamburgerMenu_OnOptionsItemClick"
                                          OptionsItemTemplate="{StaticResource HorizontalOptionTemplate}"
                                          PaneBackground="White"
@@ -95,7 +95,7 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate x:DataType="common:SampleCommand">
+                                <DataTemplate x:DataType="common:PatternCommand">
                                     <Button Content="{x:Bind Label}"
                                         Margin="0, 0, 10, 10"
                                         MinWidth="150"
