@@ -3,7 +3,7 @@ title: Advance Block Pattern
 author: phmatray
 ms.date: 12/03/2017
 description: Bearish reversal pattern made up of three consecutive bullish candles.
-keywords: windows 10, uwp, doji, CandleStick Patterns, Reversal Pattern, Three Candle Pattern, Advance Block Pattern
+keywords: windows 10, uwp, doji, Advance Block, CandleStick Patterns, Reversal Pattern, Three Candle Pattern
 ---
 
 # Advance Block Pattern

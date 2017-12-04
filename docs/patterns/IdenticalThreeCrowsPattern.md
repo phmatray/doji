@@ -3,7 +3,7 @@ title: Identical Three Crows Pattern
 author: phmatray
 ms.date: 12/03/2017
 description: The Identical 3 Crows candlestick pattern is a three-candle bearish reversal pattern signifying a change in trend.
-keywords: windows 10, uwp, doji, CandleStick Patterns, Three Candle Pattern, Identical Three Crows Pattern
+keywords: windows 10, uwp, doji, CandleStick Patterns, Identical Three Crows, Three Candle Pattern
 ---
 
 # Identical Three Crows Pattern

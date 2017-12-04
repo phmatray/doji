@@ -129,6 +129,9 @@
     <Compile Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
       <DependentUpon>AbandonedBabyBottomPatternPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml.cs">
+      <DependentUpon>AdvanceBlockPatternPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml.cs">
       <DependentUpon>IdenticalThreeCrowsPatternPage.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,7 @@
     <Content Include="Assets\Photos\reflection-849159_1920.jpg" />
     <Content Include="Icons\Helpers.png" />
     <Content Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
+    <Content Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPattern.png" />
     <Content Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPattern.png" />
     <Content Include="PatternPages\patterns.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -202,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

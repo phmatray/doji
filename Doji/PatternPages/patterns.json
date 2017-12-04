@@ -18,6 +18,13 @@
         "About": "The Identical 3 Crows candlestick pattern is a three-candle bearish reversal pattern signifying a change in trend.",
         "Icon": "/PatternPages/IdenticalThreeCrowsPattern/IdenticalThreeCrowsPattern.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/IdenticalThreeCrowsPattern.md"
+      },
+      {
+        "Name": "AdvanceBlockPattern",
+        "Type": "AdvanceBlockPatternPage",
+        "About": "Bearish reversal pattern made up of three consecutive bullish candles.",
+        "Icon": "/PatternPages/AdvanceBlockPattern/AdvanceBlockPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AdvanceBlockPattern.md"
       }
     ]
   }
