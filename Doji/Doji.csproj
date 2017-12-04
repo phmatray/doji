@@ -129,6 +129,24 @@
     <Compile Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
       <DependentUpon>AbandonedBabyBottomPatternPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PatternPages\MorningStarPattern\MorningStarPatternPage.xaml.cs">
+      <DependentUpon>MorningStarPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml.cs">
+      <DependentUpon>MorningStarDojiPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml.cs">
+      <DependentUpon>EveningDojiStarPattern.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml.cs">
+      <DependentUpon>DownsideTasukiGapPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml.cs">
+      <DependentUpon>DownsideGapThreePatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PatternPages\DeliberationPattern\DeliberationPatternPage.xaml.cs">
+      <DependentUpon>DeliberationPatternPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml.cs">
       <DependentUpon>AdvanceBlockPatternPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +194,12 @@
     <Content Include="Icons\Helpers.png" />
     <Content Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
     <Content Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPattern.png" />
+    <Content Include="PatternPages\MorningStarPattern\MorningStarPattern.png" />
+    <Content Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPattern.png" />
+    <Content Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.png" />
+    <Content Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPattern.png" />
+    <Content Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePattern.png" />
+    <Content Include="PatternPages\DeliberationPattern\DeliberationPattern.png" />
     <Content Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPattern.png" />
     <Content Include="PatternPages\patterns.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -206,6 +230,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\MorningStarPattern\MorningStarPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PatternPages\DeliberationPattern\DeliberationPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

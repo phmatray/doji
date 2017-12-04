@@ -10,7 +10,42 @@
         //"CodeUrl": "https://github.com/Microsoft/UWPCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/BackgroundTaskHelper.cs",
         //"CodeFile": "AbandonedBabyBottomPatternCode.bind",
         "Icon": "/PatternPages/AbandonedBabyBottomPattern/AbandonedBabyBottomPattern.png",
-        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AbandonedBabyBottomPattern.md"
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AbandonedBabyBullishPattern.md"
+      },
+      {
+        "Name": "AdvanceBlockPattern",
+        "Type": "AdvanceBlockPatternPage",
+        "About": "Bearish reversal pattern made up of three consecutive bullish candles.",
+        "Icon": "/PatternPages/AdvanceBlockPattern/AdvanceBlockPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AdvanceBlockPattern.md"
+      },
+      {
+        "Name": "DeliberationPattern",
+        "Type": "DeliberationPatternPage",
+        "About": "The Deliberation candlestick pattern is closely related to the Advanced Block pattern.",
+        "Icon": "/PatternPages/DeliberationPattern/DeliberationPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/DeliberationPattern.md"
+      },
+      {
+        "Name": "DownsideGapThreePattern",
+        "Type": "DownsideGapThreePatternPage",
+        "About": "The Downside Gap 3 candlestick pattern is very similar to the Downside Tasuki Gap pattern, with one minor difference.",
+        "Icon": "/PatternPages/DownsideGapThreePattern/DownsideGapThreePattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/DownsideGapThreePattern.md"
+      },
+      {
+        "Name": "DownsideTasukiGapPattern",
+        "Type": "DownsideTasukiGapPatternPage",
+        "About": "This pattern is a three candle pattern that in theory acts as a bearish continuation pattern.",
+        "Icon": "/PatternPages/DownsideTasukiGapPattern/DownsideTasukiGapPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/DownsideTasukiGapPattern.md"
+      },
+      {
+        "Name": "EveningDojiStarPattern",
+        "Type": "EveningDojiStarPatternPage",
+        "About": "The Evening Doji Star candlestick pattern formation is one of the better performing three candle patterns out there.",
+        "Icon": "/PatternPages/EveningDojiStarPattern/EveningDojiStarPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/EveningDojiStarPattern.md"
       },
       {
         "Name": "IdenticalThreeCrowsPattern",
@@ -20,11 +55,18 @@
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/IdenticalThreeCrowsPattern.md"
       },
       {
-        "Name": "AdvanceBlockPattern",
-        "Type": "AdvanceBlockPatternPage",
-        "About": "Bearish reversal pattern made up of three consecutive bullish candles.",
-        "Icon": "/PatternPages/AdvanceBlockPattern/AdvanceBlockPattern.png",
-        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AdvanceBlockPattern.md"
+        "Name": "MorningStarDojiPattern",
+        "Type": "MorningStarDojiPatternPage",
+        "About": "This three candle pattern formation is a bullish reversal pattern with a solid history of performing well.",
+        "Icon": "/PatternPages/MorningStarDojiPattern/MorningStarDojiPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/MorningStarDojiPattern.md"
+      },
+      {
+        "Name": "MorningStarPattern",
+        "Type": "MorningStarPatternPage",
+        "About": "This pattern is similar to the Morning Doji Star candle pattern with the exception of the middle candle.",
+        "Icon": "/PatternPages/MorningStarPattern/MorningStarPattern.png",
+        "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/MorningStarPattern.md"
       }
     ]
   }
