@@ -17,7 +17,8 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>Doji_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Doji_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>C6C748B1925DFADD6B0E6A67E5417A43C508F3D1</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -121,38 +122,54 @@
     <Compile Include="Models\PropertyDescriptor\SliderPropertyOptions.cs" />
     <Compile Include="Models\PropertyDescriptor\ValueHolder.cs" />
     <Compile Include="Models\Pattern.cs" />
-    <Compile Include="Models\PatternCategory.cs" />
+    <Compile Include="Models\MenuCategory.cs" />
     <Compile Include="Models\Patterns.cs" />
     <Compile Include="Pages\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
+    <Compile Include="Pages\Converters\PercentageColorPastelConverter.cs" />
+    <Compile Include="Pages\Converters\PercentageColorConverter.cs" />
+    <Compile Include="Pages\Converters\PercentageUpDownConverter.cs" />
+    <Compile Include="Pages\PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml.cs">
       <DependentUpon>AbandonedBabyBottomPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\MorningStarPattern\MorningStarPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\TasukiUpsideGapPattern\TasukiUpsideGapPatternPage.xaml.cs">
+      <DependentUpon>TasukiUpsideGapPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PatternPages\StickSandwichPattern\StickSandwichPatternPage.xaml.cs">
+      <DependentUpon>StickSandwichPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PatternPages\SideBySideWhiteLinesBullishPattern\SideBySideWhiteLinesBullishPatternPage.xaml.cs">
+      <DependentUpon>SideBySideWhiteLinesBullishPatternPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PatternPages\MorningStarPattern\MorningStarPatternPage.xaml.cs">
       <DependentUpon>MorningStarPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml.cs">
       <DependentUpon>MorningStarDojiPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml.cs">
+    <Compile Include="Pages\PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml.cs">
       <DependentUpon>EveningDojiStarPattern.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml.cs">
       <DependentUpon>DownsideTasukiGapPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml.cs">
       <DependentUpon>DownsideGapThreePatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\DeliberationPattern\DeliberationPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\DeliberationPattern\DeliberationPatternPage.xaml.cs">
       <DependentUpon>DeliberationPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml.cs">
       <DependentUpon>AdvanceBlockPatternPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml.cs">
+    <Compile Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml.cs">
       <DependentUpon>IdenticalThreeCrowsPatternPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtilityPage.xaml.cs">
+      <DependentUpon>WatchlistUtilityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtilityViewModel.cs" />
     <Compile Include="TrackingManager.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\CodeRenderer\CodeRenderer.Properties.cs" />
@@ -183,7 +200,6 @@
     <Content Include="Assets\btc-ada.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Doji_TemporaryKey.pfx" />
     <Content Include="Assets\Helpers.png" />
     <Content Include="Assets\Html\CSharp.html" />
     <Content Include="Assets\Html\Json.html" />
@@ -191,22 +207,30 @@
     <Content Include="Assets\Html\Xml.html" />
     <Content Include="Assets\Photos\ales-krivec-43430.jpg" />
     <Content Include="Assets\Photos\reflection-849159_1920.jpg" />
+    <Content Include="Assets\pixel.png" />
+    <Content Include="Icons\Error.png" />
     <Content Include="Icons\Helpers.png" />
-    <Content Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
-    <Content Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPattern.png" />
-    <Content Include="PatternPages\MorningStarPattern\MorningStarPattern.png" />
-    <Content Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPattern.png" />
-    <Content Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.png" />
-    <Content Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPattern.png" />
-    <Content Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePattern.png" />
-    <Content Include="PatternPages\DeliberationPattern\DeliberationPattern.png" />
-    <Content Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPattern.png" />
-    <Content Include="PatternPages\patterns.json">
+    <None Include="Doji_StoreKey.pfx" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Pages\PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
+    <Content Include="Pages\PatternPages\DeliberationPattern\DeliberationPattern.png" />
+    <Content Include="Pages\PatternPages\TasukiUpsideGapPattern\TasukiUpsideGapPattern.png" />
+    <Content Include="Pages\PatternPages\StickSandwichPattern\StickSandwichPattern.png" />
+    <Content Include="Pages\PatternPages\SideBySideWhiteLinesBullishPattern\SideBySideWhiteLinesBullishPattern.png" />
+    <Content Include="Pages\PatternPages\MorningStarPattern\MorningStarPattern.png" />
+    <Content Include="Pages\PatternPages\MorningStarDojiPattern\MorningStarDojiPattern.png" />
+    <Content Include="Pages\PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.png" />
+    <Content Include="Pages\PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPattern.png" />
+    <Content Include="Pages\PatternPages\DownsideGapThreePattern\DownsideGapThreePattern.png" />
+    <Content Include="Pages\PatternPages\AdvanceBlockPattern\AdvanceBlockPattern.png" />
+    <Content Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPattern.png" />
+    <Content Include="Pages\menu.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="landingPageLinks.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtility.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -229,39 +253,55 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
+    <Page Include="Pages\PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\MorningStarPattern\MorningStarPatternPage.xaml">
+    <Page Include="Pages\PatternPages\TasukiUpsideGapPattern\TasukiUpsideGapPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml">
+    <Page Include="Pages\PatternPages\StickSandwichPattern\StickSandwichPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml">
+    <Page Include="Pages\PatternPages\SideBySideWhiteLinesBullishPattern\SideBySideWhiteLinesBullishPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml">
+    <Page Include="Pages\PatternPages\MorningStarPattern\MorningStarPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml">
+    <Page Include="Pages\PatternPages\MorningStarDojiPattern\MorningStarDojiPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\DeliberationPattern\DeliberationPatternPage.xaml">
+    <Page Include="Pages\PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml">
+    <Page Include="Pages\PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPatternPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml">
+    <Page Include="Pages\PatternPages\DownsideGapThreePattern\DownsideGapThreePatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PatternPages\DeliberationPattern\DeliberationPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PatternPages\AdvanceBlockPattern\AdvanceBlockPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtilityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -276,16 +316,19 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bittrex.Net">
-      <Version>1.3.1</Version>
+      <Version>1.3.7</Version>
+    </PackageReference>
+    <PackageReference Include="CryptoCompare">
+      <Version>0.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.2</Version>
+      <Version>6.0.6</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Monaco.Editor">
       <Version>0.5.0-alpha</Version>
@@ -310,6 +353,9 @@
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

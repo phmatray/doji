@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="c4cc193a-ca33-4347-b9e5-79698c5719ea" Publisher="CN=studentdot0105" Version="0.1.0.0" />
-  <mp:PhoneIdentity PhoneProductId="c4cc193a-ca33-4347-b9e5-79698c5719ea" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="24148phmatray.Doji" Publisher="CN=6CF66277-0E97-4BC1-8557-E0214D213453" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="22d1188f-39b9-49a4-b250-dcc2b39c0edc" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Doji</DisplayName>
-    <PublisherDisplayName>studentdot0105</PublisherDisplayName>
+    <PublisherDisplayName>phmatray</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

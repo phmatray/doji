@@ -55,10 +55,12 @@
                                                  NotEmptyValue="Visible" />
 
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-
+        
         <convertersLocal:DateFormatConverter x:Key="DateFormatConverter" />
-
         <convertersLocal:PriceFormatConverter x:Key="PriceFormatConverter" />
+        <convertersLocal:PercentageUpDownConverter x:Key="PercentageUpDownConverter" />
+        <convertersLocal:PercentageColorConverter x:Key="PercentageColorConverter" />
+        <convertersLocal:PercentageColorPastelConverter x:Key="PercentageColorPastelConverter" />
 
         <!-- VM Locator -->
         <viewModels:ViewModelLocator x:Key="Locator" />

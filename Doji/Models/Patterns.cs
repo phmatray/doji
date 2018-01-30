@@ -24,18 +24,18 @@ namespace Doji
     {
         private const string _recentPatternsStorageKey = "uct-recent-patterns";
 
-        private static List<PatternCategory> _patternsCategories;
+        private static List<MenuCategory> _patternsCategories;
         private static SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
         private static LinkedList<Pattern> _recentPatterns;
         private static RoamingObjectStorageHelper _roamingObjectStorageHelper = new RoamingObjectStorageHelper();
 
-        public static async Task<PatternCategory> GetCategoryByPattern(Pattern pattern)
+        public static async Task<MenuCategory> GetCategoryByPattern(Pattern pattern)
         {
             return (await GetCategoriesAsync()).FirstOrDefault(c => c.Patterns.Contains(pattern));
         }
 
-        public static async Task<PatternCategory> GetCategoryByName(string name)
+        public static async Task<MenuCategory> GetCategoryByName(string name)
         {
             return (await GetCategoriesAsync()).FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
@@ -51,20 +51,20 @@ namespace Doji
             return (await GetCategoriesAsync()).SelectMany(c => c.Patterns).Where(s => s.Name.ToLower().Contains(query)).ToArray();
         }
 
-        public static async Task<List<PatternCategory>> GetCategoriesAsync()
+        public static async Task<List<MenuCategory>> GetCategoriesAsync()
         {
             await _semaphore.WaitAsync();
             if (_patternsCategories == null)
             {
-                List<PatternCategory> allCategories;
-                using (var jsonStream = await StreamHelper.GetPackagedFileStreamAsync("PatternPages/patterns.json"))
+                List<MenuCategory> allCategories;
+                using (var jsonStream = await StreamHelper.GetPackagedFileStreamAsync("Pages/menu.json"))
                 {
                     var jsonString = await jsonStream.ReadTextAsync();
-                    allCategories = JsonConvert.DeserializeObject<List<PatternCategory>>(jsonString);
+                    allCategories = JsonConvert.DeserializeObject<List<MenuCategory>>(jsonString);
                 }
 
                 // Check API
-                var supportedCategories = new List<PatternCategory>();
+                var supportedCategories = new List<MenuCategory>();
                 foreach (var category in allCategories)
                 {
                     var finalPatterns = new List<Pattern>();

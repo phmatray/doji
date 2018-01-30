@@ -10,18 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
+using Windows.UI.Xaml.Controls;
 
-namespace Doji
+namespace Doji.PatternPages
 {
-    public class Option
+    public sealed partial class StickSandwichPatternPage : Page
     {
-        public string Glyph { get; set; }
-
-        public string Name { get; set; }
-
-        public Type PageType { get; set; }
-
-        public MenuCategory Tag { get; set; }
+        public StickSandwichPatternPage()
+        {
+            InitializeComponent();
+        }
     }
 }

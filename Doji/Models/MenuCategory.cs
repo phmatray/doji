@@ -10,18 +10,14 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-
 namespace Doji
 {
-    public class Option
+    public class MenuCategory
     {
-        public string Glyph { get; set; }
-
         public string Name { get; set; }
 
-        public Type PageType { get; set; }
+        public Pattern[] Patterns { get; set; }
 
-        public MenuCategory Tag { get; set; }
+        public string Icon { get; set; }
     }
 }

@@ -10,14 +10,15 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-namespace Doji
+using Windows.UI.Xaml.Controls;
+
+namespace Doji.PatternPages
 {
-    public class PatternCategory
+    public sealed partial class TasukiUpsideGapPatternPage : Page
     {
-        public string Name { get; set; }
-
-        public Pattern[] Patterns { get; set; }
-
-        public string Icon { get; set; }
+        public TasukiUpsideGapPatternPage()
+        {
+            InitializeComponent();
+        }
     }
 }

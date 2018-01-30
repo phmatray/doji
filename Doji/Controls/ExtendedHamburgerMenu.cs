@@ -368,7 +368,7 @@ namespace Doji.Controls
                 return;
             }
 
-            if (e.ClickedItem is PatternCategory category)
+            if (e.ClickedItem is MenuCategory category)
             {
                 if (_patternPickerGrid.Visibility != Visibility.Collapsed && SelectedItem == e.ClickedItem)
                 {

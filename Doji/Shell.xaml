@@ -24,7 +24,7 @@
 
 
         <DataTemplate x:Key="HorizontalItemTemplate"
-                      x:DataType="local:PatternCategory">
+                      x:DataType="local:MenuCategory">
             <Grid>
                 <TextBlock Grid.Column="1"
                            VerticalAlignment="Center"

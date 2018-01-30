@@ -184,12 +184,12 @@ namespace Doji
         {
             ProcessPatternEditorTime();
 
-            PatternCategory category;
+            MenuCategory category;
             if (navigationEventArgs.Parameter == null)
             {
                 DataContext = null;
                 HamburgerMenu.CurrentPattern = null;
-                category = navigationEventArgs.Parameter as PatternCategory;
+                category = navigationEventArgs.Parameter as MenuCategory;
 
                 if (category != null)
                 {
