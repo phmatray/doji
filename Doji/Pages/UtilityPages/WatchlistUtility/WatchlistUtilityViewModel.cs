@@ -31,20 +31,18 @@ namespace Doji.Pages.UtilityPages.WatchlistUtility
     {
         protected static BittrexClient BittrexClient { get; } = new BittrexClient();
         protected static CryptoCompareClient CryptoCompareClient { get; } = CryptoCompareClient.Instance;
-    }
 
-
-    public class WatchlistUtilityViewModel : MyViewModelBase
-    {
         private bool _isLoading;
 
         public bool IsLoading
         {
             get { return _isLoading; }
-            private set { Set(ref _isLoading, value); }
+            set { Set(ref _isLoading, value); }
         }
+    }
 
-        public ObservableCollection<Summary> Summaries { get; set; }
+    public class WatchlistUtilityViewModel : MyViewModelBase
+    {
 
         public WatchlistUtilityViewModel()
         {
@@ -52,7 +50,9 @@ namespace Doji.Pages.UtilityPages.WatchlistUtility
             InitializeAsync();
         }
 
-        public async Task InitializeAsync()
+        public ObservableCollection<Summary> Summaries { get; set; }
+
+        private async Task InitializeAsync()
         {
             IsLoading = true;
 

@@ -1,0 +1,196 @@
+{
+  "source": "https://cryptovest.com/education/glossary/",
+  "categories": [
+    {
+      "category": "blockchain",
+      "elements": [
+        {
+          "title": "Altcoin (alternative coin)",
+          "description": "Cryptocurrency that has all the attributes of Bitcoin. However, it does not use the same blockchain so it does not have the same genesis blocks. Altcoin’s rules are generally not compatible with Bitcoin."
+        },
+        {
+          "title": "Bit",
+          "description": "A unit used to designate a sub-unit of a bitcoin - 1,000,000 bits equals 1 bitcoin (BTC)."
+        },
+        {
+          "title": "Bitcoin",
+          "description": "A digital currency that allows for the purchase of goods and services. It is decentralized, meaning it is not backed by any central bank or government. It can be abbreviated BTC or XBT."
+        },
+        {
+          "title": "Block Hight",
+          "description": "This refers to the number of blocks preceding the genesis block (first block) on the chain. Genesis blocks have heights of zero because nothing precedes them. It is estimated that a bitcoin block is created every 10 minutes."
+        },
+        {
+          "title": "Block Reward",
+          "description": "These rewards go to the miners who hash the block. Hash means to solve the mathematical equation that creates the block."
+        },
+        {
+          "title": "Blockchain",
+          "description": "This is a data system that acts as a digital ledger of transactions. Through cryptography, the network is protected. It is comprised of so-called blocks that contain records of transactions."
+        },
+        {
+          "title": "Dash",
+          "description": "A type of cryptocurrency that touts being the first self-governing, self-funding protocol."
+        },
+        {
+          "title": "Digital Tokens",
+          "description": "This digital currency is rivaling others in the cryptocurrency space. It is tied to the blockchain platform. The currency has increasingly been sold by tech startups that can be used to fund their projects, instead of traditional financing, such as venture capital."
+        },
+        {
+          "title": "Distribution Ledger",
+          "description": "An agreement of shared, replicable, and synchronized data, that is spread across several networks, across many CPUs."
+        },
+        {
+          "title": "Double Spending",
+          "description": "This occurs if someone tries to make purchases with their bitcoins at two different places."
+        },
+        {
+          "title": "Ether",
+          "description": "Is the payment form of payment made by the clients of the platform to the machines that execute the requested operations. It is considered the necessary element, and fuel, for operating Ethereum. It insures developers write quality applications, and that the network remains healthy."
+        },
+        {
+          "title": "Hash Rate",
+          "description": "The measure in which bitcoins are processed mathematically. This must be done quickly for security purposes."
+        },
+        {
+          "title": "Litecoin",
+          "description": "A type of altcoin that has a faster block confirmation time than Bitcoin."
+        },
+        {
+          "title": "Mining",
+          "description": "This process is how transactions or blocks are appended to the blockchain. During the process, transactions are compiled into blocks. This process and the blockchain help to create consensus on the network about which of the two transactions will be confirmed as valid."
+        },
+        {
+          "title": "P2P network",
+          "description": "One of three technologies used to build blockchain."
+        },
+        {
+          "title": "Peer-to-Peer",
+          "description": "This system is the second kind of technology used to build blockchain. It performs so that each user on the network is broadcasting the transactions of other users. These are called third parties."
+        },
+        {
+          "title": "Ripple",
+          "description": "This is one of the newest types of digital currency. It also works as an open payment network within which that currency is transferred. Ripple may ultimately be used to build on a similar decentralized such as that used by Bitcoin."
+        },
+        {
+          "title": "Satoshi Nakamoto",
+          "description": "This is the name associated with the inventor(s) of Bitcoin."
+        }
+      ]
+    },
+    {
+      "category": "investing",
+      "elements": [
+        {
+          "title": "ANN",
+          "description": "Is an acronym for Announcement. You will see ANN next to a new cryptocurrency project publicizing an upcoming launch. ANNs are typically listed on dedicated forums threads on bitcointalk. Most recently it has been used by projects announcing crowdfunding using ICO."
+        },
+        {
+          "title": "ATH",
+          "description": "Is an acronym for all-time high. It is the last highest price on any cryptocurrency price chart."
+        },
+        {
+          "title": "Bagholder",
+          "description": "Is someone holding a large amount of cryptocurrency. The cryptocurrency language is evolving with the technology. New words come up and get added to the existing lexicon. With these 15 words, you will fit right in and keep up with conversations on r/bitcoin, bitcointalk forum or any one of the numerous cryptocurrency telegram and slack channels."
+        },
+        {
+          "title": "Bearwhale",
+          "description": "Is a whale that use their influence to suppress prices. The bear-whale of 2014 was the most memorable. A large $ 9 million sell order of 30,000 bitcoins on Bitstamp prevented price from rising any higher, forcing the market to flat line. The market, however, was intent on a bull run. Persistent buying activity chewed through the large order leading to the slaying of the bear whale."
+        },
+        {
+          "title": "Bitcoin Exchanges",
+          "description": "Places that facilitate the purchase of bitcoins."
+        },
+        {
+          "title": "Enterprise Ethereum Alliance",
+          "description": "A group of Fortune 500 companies, startups, academics, and technology vendors that have teamed with Ethereum subject matter experts. Members include Microsoft, JP Morgan, and Intel."
+        },
+        {
+          "title": "Ethereum Smart Contract",
+          "description": "The cryptocurrency Ethereum was built specifically to create smart contracts."
+        },
+        {
+          "title": "Fiat",
+          "description": "Is a derogatory term referring to traditional currencies issued by governments and central banks. Cryptocurrency communities generally despise the effects of fiat currency on the economic imbalance in the world. Fiat money is based on fractional reserve banking that is heavily tilted in favor banks at the expense of the populace. Cryptocurrencies are an alternative to the fiat banking system."
+        },
+        {
+          "title": "FOMO",
+          "description": "Is an acronym for Fear Of Missing Out. It describes the hype preceding an exponential rise in market price of a cryptocurrency in 4 letters. Buyers get caught up in the heat of the moment watching the price go up. They act irrationally to buy at whatever price over fears of missing out on higher prices. The collective result is an extreme upside price fueled by holders and a stream of thrilled buyers. FOMO may arise out of pump and dumps or may be driven by sound fundamentals."
+        },
+        {
+          "title": "FUD",
+          "description": "Is an acronym for Fear Uncertainty and Doubt. FUD is any intended claims to instill fear in the market to cause market sell-offs or spread misinformation to keep people away from certain opportunities."
+        },
+        {
+          "title": "Gox Crisis",
+          "description": "A critical point in Bitcoin history when more than $480 million of it disappeared due to mismanagement of the cryptocurrency. The name is derived from the Tokyo-based Mt. Gox Bitcoin exchange."
+        },
+        {
+          "title": "HODL",
+          "description": "Is as an intentional mistype of the word ‘Hold' meaning to hold on to a cryptocurrency trading position. The word originated from a typo by a trader sharing his strategy in a furious price decline. The word was picked up by the community and quickly rose stuck to one of the most popular terms in the cryptocurrency market. When you HODL, you are committed irrespective of any price declines. Its frequently used by fundamentalists whose faith in their cryptocurrency holdings is unshakeable."
+        },
+        {
+          "title": "Initial Coin Offerings (ICOs)",
+          "description": "Like initial public offerings, these offerings provide a way to launch new cryptocurrencies."
+        },
+        {
+          "title": "Lambo",
+          "description": "Slang for Lamborghini. You will find its use frequently amongst traders bragging about the incredible sums of money you stand to make trading cryptocurrencies.  Lambo refers to insane returns, enough to buy a $1 million Lamborghini. Cryptocurrency early adopters now turned millionaires give credence to the appropriateness of the term."
+        },
+        {
+          "title": "Moon",
+          "description": "Refers to an extremely high cryptocurrency price. Moon is when your cryptocurrencies are worth enough to quit your job and retire. It is an infinitely high target. You will find cryptocurrency traders use 'moon' to describe the anticipated high prices in a bullish market. Moon is both a noun and verb. For example \"When will bitcoin moon?\" \"Fasten your seatbelts; we are about to go to the moon.\""
+        },
+        {
+          "title": "Payment Processors",
+          "description": "Merchants who accept bitcoins use specific processors to handle the transactions. This can include online merchants, brick and mortar businesses, or individuals. Processors include Coinbase, BitPay, and Paymium."
+        },
+        {
+          "title": "Rekt",
+          "description": "Is slang for wrecked. It describes the state of running into losses after market prices move against your expectation. You are rekt if you made an excessive amount of loss on a bad call on a trade."
+        },
+        {
+          "title": "Shill",
+          "description": "Self-serving individuals who will promote any cryptocurrency for a quick buck. Broadly, shills will pitch a cryptocurrency project they are invested in and hope to profit from its adoption. You will come across them on forums, youtube, telegram, and slack channels talking up a project to rope in unknowing investors. Often, crucial details are left out in the pitch. Shills will defend their cause at all costs."
+        },
+        {
+          "title": "Shitcoins",
+          "description": "Is a derogatory term for cryptocurrencies that become worthless over time, have no utility or are pure scams. Cryptocurrency adopters are extremely loyal to one or several cryptocurrencies. Sometimes people within a particular community will deride other cryptocurrencies by labeling them shitcoins."
+        },
+        {
+          "title": "Whales",
+          "description": "A wealthy individual or group of traders with significant control on cryptocurrency market prices due to their extraordinary large holdings. They can single-handedly force price declines by instantly selling off large amounts. Conversely, they can buy up orders and push prices higher."
+        }
+      ]
+    },
+    {
+      "category": "personal security",
+      "elements": [
+        {
+          "title": "Bitcoin Address",
+          "description": "This address is the location from which you receive, send, and hold your digital currency."
+        },
+        {
+          "title": "Bitcoin Wallet",
+          "description": "Like a normal wallet, this digital wallet holds bitcoins. The holder of the wallet receives, stores, and sends bitcoins with them."
+        },
+        {
+          "title": "Multisignature (Multisig)",
+          "description": "This is associated with Bitcoin transactions in which more than one key is required to authorize the transaction. It is used to divvy up the responsibility of who holds the bitcoins."
+        },
+        {
+          "title": "Private Key",
+          "description": "Belonging only to the user, this key acts as a signature for the Bitcoin transaction. It helps to create a secure identification reference for its holder."
+        },
+        {
+          "title": "Signature",
+          "description": "This digital form of a signature keeps bitcoin transactions from being changed once they have been processed."
+        },
+        {
+          "title": "Web Wallet",
+          "description": "The second type of bitcoin wallet. It is also referred to as a hosted wallet. It is hosted by a third party. These wallet providers include Coinbase, Electrum, and Bitcoin wallet"
+        }
+      ]
+    }
+  ]
+}

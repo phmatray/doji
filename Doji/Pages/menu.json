@@ -7,10 +7,13 @@
         "Name": "WatchlistUtility",
         "Type": "WatchlistUtilityPage",
         "About": "...",
-        //"CodeUrl": "https://github.com/Microsoft/UWPCommunityToolkit/blob/master/Microsoft.Toolkit.Uwp/Helpers/BackgroundTaskHelper.cs",
-        //"CodeFile": "AbandonedBabyBottomPatternCode.bind",
-        "Icon": "/Pages/PatternPages/AbandonedBabyBottomPattern/AbandonedBabyBottomPattern.png"
-        //"DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/AbandonedBabyBullishPattern.md"
+        "Icon": "/Pages/UtilityPages/WatchlistUtility/WatchlistUtility.png"
+      },
+      {
+        "Name": "GlossaryUtility",
+        "Type": "GlossaryUtilityPage",
+        "About": "...",
+        "Icon": "/Pages/UtilityPages/GlossaryUtility/GlossaryUtility.png"
       }
     ]
   },

@@ -166,6 +166,12 @@
     <Compile Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml.cs">
       <DependentUpon>IdenticalThreeCrowsPatternPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UtilityPages\GlossaryUtility\JsonModels.cs" />
+    <Compile Include="Models\GlossaryElement.cs" />
+    <Compile Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtilityViewModel.cs" />
+    <Compile Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtilityPage.xaml.cs">
+      <DependentUpon>GlossaryUtilityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtilityPage.xaml.cs">
       <DependentUpon>WatchlistUtilityPage.xaml</DependentUpon>
     </Compile>
@@ -228,8 +234,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="landingPageLinks.json" />
+    <Content Include="Pages\UtilityPages\GlossaryUtility\glossary.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtility.png" />
     <Content Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtility.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -298,6 +308,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPatternPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtilityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

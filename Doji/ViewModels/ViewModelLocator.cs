@@ -14,6 +14,7 @@
 
 using Doji.Design;
 using Doji.Models;
+using Doji.Pages.UtilityPages.GlossaryUtility;
 using Doji.Pages.UtilityPages.WatchlistUtility;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
@@ -52,6 +53,7 @@ namespace Doji.ViewModels
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WatchlistUtilityViewModel>();
+            SimpleIoc.Default.Register<GlossaryUtilityViewModel>();
         }
 
         public MainViewModel Main
@@ -59,6 +61,9 @@ namespace Doji.ViewModels
 
         public WatchlistUtilityViewModel WatchlistUtility
             => ServiceLocator.Current.GetInstance<WatchlistUtilityViewModel>();
+
+        public GlossaryUtilityViewModel GlossaryUtility
+            => ServiceLocator.Current.GetInstance<GlossaryUtilityViewModel>();
 
         public static void Cleanup()
         {
