@@ -3,7 +3,7 @@
     using System.Linq;
     using GalaSoft.MvvmLight;
 
-    public class GlossaryElement : ObservableObject
+    public class GlossaryItem : ObservableObject
     {
         public string Category { get; set; }
         public string Description { get; set; }

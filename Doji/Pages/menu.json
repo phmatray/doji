@@ -89,7 +89,7 @@
       {
         "Name": "SideBySideWhiteLinesBullishPattern",
         "Type": "SideBySideWhiteLinesBullishPatternPage",
-        "About": "You won’t hear too many traders reference the Side By Side White Lines candlestick pattern mostly due to its long name and rarity.",
+        "About": "You won't hear too many traders reference the Side By Side White Lines candlestick pattern mostly due to its long name and rarity.",
         "Icon": "/Pages/PatternPages/SideBySideWhiteLinesBullishPattern/SideBySideWhiteLinesBullishPattern.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/SideBySideWhiteLinesBullishPattern.md"
       },

@@ -12,17 +12,17 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using Doji.Design;
-using Doji.Models;
-using Doji.Pages.UtilityPages.GlossaryUtility;
-using Doji.Pages.UtilityPages.WatchlistUtility;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
-
 namespace Doji.ViewModels
 {
+    using Design;
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.Ioc;
+    using GalaSoft.MvvmLight.Views;
+    using Microsoft.Practices.ServiceLocation;
+    using Pages.UtilityPages.GlossaryUtility;
+    using Pages.UtilityPages.WatchlistUtility;
+    using Services;
+
     /// <summary>
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
@@ -44,11 +44,11 @@ namespace Doji.ViewModels
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<IDataService, DataService>();
+                SimpleIoc.Default.Register<IDataService, DesignDataService>();
             }
             else
             {
-                SimpleIoc.Default.Register<IDataService, DesignDataService>();
+                SimpleIoc.Default.Register<IDataService, DataService>();
             }
 
             SimpleIoc.Default.Register<MainViewModel>();

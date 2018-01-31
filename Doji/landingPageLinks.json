@@ -41,6 +41,10 @@
         {
           "title": "Bitcoin talk",
           "url": "https://bitcointalk.org/"
+        },
+        {
+          "title": "CryptoCompare API",
+          "url": "https://www.cryptocompare.com/api/#"
         }
       ]
     }

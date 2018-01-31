@@ -6,6 +6,7 @@
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:watchlistUtility="using:Doji.Pages.UtilityPages.WatchlistUtility"
+      xmlns:models="using:Doji.Models"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=WatchlistUtility}">
 
@@ -17,7 +18,7 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="CurrenciesTemplate" x:DataType="watchlistUtility:Summary">
+        <DataTemplate x:Key="CurrenciesTemplate" x:DataType="models:Summary">
             <Grid
             Background="White"
             BorderBrush="Black"

@@ -4,43 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bittrex.Net;
 using Bittrex.Net.Objects;
-using CryptoCompare;
-using GalaSoft.MvvmLight;
+using Doji.Models;
+using Doji.ViewModels;
 
 namespace Doji.Pages.UtilityPages.WatchlistUtility
 {
-    public class Summary
-    {
-        public CoinInfo Info { get; }
-        public CoinFullAggregatedDataDisplay BtcPrice { get; }
-        public CoinFullAggregatedDataDisplay EthPrice { get; }
-        public string ImgUrl { get; }
-
-        public Summary(CoinInfo coinInfo, CoinFullAggregatedDataDisplay btcPrice, CoinFullAggregatedDataDisplay ethPrice, string coinImgUrl)
-        {
-            Info = coinInfo;
-            BtcPrice = btcPrice;
-            EthPrice = ethPrice;
-            ImgUrl = coinImgUrl;
-        }
-    }
-
-    public class MyViewModelBase : ViewModelBase
-    {
-        protected static BittrexClient BittrexClient { get; } = new BittrexClient();
-        protected static CryptoCompareClient CryptoCompareClient { get; } = CryptoCompareClient.Instance;
-
-        private bool _isLoading;
-
-        public bool IsLoading
-        {
-            get { return _isLoading; }
-            set { Set(ref _isLoading, value); }
-        }
-    }
-
     public class WatchlistUtilityViewModel : MyViewModelBase
     {
 

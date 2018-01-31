@@ -6,37 +6,100 @@
       xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:models="using:Doji.Models"
-      xmlns:GlossaryUtility="using:Doji.Pages.UtilityPages.GlossaryUtility"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=GlossaryUtility}">
 
     <Page.Resources>
+        <CollectionViewSource
+            x:Name="CVSGlossaryItems"
+            x:Key="CVSGlossaryItems"
+            Source="{Binding GroupedGlossaryItems, Mode=OneWay}"
+            IsSourceGrouped="True"/>
+        
+        <DataTemplate x:Key="GlossaryItemTemplate" x:DataType="models:GlossaryItem">
+            <Grid Margin="10,15,10,15" MaxWidth="800">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding Title}"
+                            Style="{StaticResource TitleTextBlockStyle}"
+                            VerticalAlignment="Center"
+                            FontWeight="Bold"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Category}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            FontWeight="Bold"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Description}"
+                            TextWrapping="WrapWholeWords"
+                            TextAlignment="Justify"/>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GlossaryItemHeaderTemplate" x:DataType="models:GlossaryItemsGroup">
+            <TextBlock Text="{x:Bind Key}"
+                       Style="{ThemeResource HeaderTextBlockStyle}"
+                       Padding="5,0,0,0"/>
+        </DataTemplate>
+
+        <Style x:Key="GlossaryItemHeaderContainerStyle" TargetType="ListViewHeaderItem">
+            <Setter Property="MaxWidth" Value="800"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontSize" Value="{ThemeResource ListViewHeaderItemThemeFontSize}" />
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Padding" Value="0,8,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="MinHeight" Value="{ThemeResource ListViewHeaderItemMinHeight}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewHeaderItem">
+                        <StackPanel Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter x:Name="ContentPresenter"
+                                        Margin="{TemplateBinding Padding}"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTransitions="{TemplateBinding ContentTransitions}"
+                                        HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Rectangle Stroke="{ThemeResource SystemControlForegroundBaseLowBrush}"
+                                StrokeThickness="5"
+                                Height="10"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch"
+                                Margin="0,8,0,0"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <DataTemplate x:Key="WaitListTemplate">
             <StackPanel Orientation="Horizontal" Padding="12">
                 <ProgressRing IsActive="True" Margin="0,0,12,0" Foreground="{StaticResource Brush-White}" />
-                <TextBlock Text="Loading currencies" VerticalAlignment="Center" Foreground="White"/>
-            </StackPanel>
-        </DataTemplate>
-
-        <DataTemplate x:Key="GlossaryElementTemplate" x:DataType="models:GlossaryElement">
-            <StackPanel>
-                <TextBlock Text="{Binding Category}"/>
-                <TextBlock Text="{Binding Title}"/>
-                <TextBlock Text="{Binding Description}"/>
+                <TextBlock Text="Loading glossary" VerticalAlignment="Center" Foreground="White"/>
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
     
     <Grid Background="{StaticResource Brush-Grey-05}">
-        <controls:AdaptiveGridView Name="AdaptiveGridViewControl"
-                                    OneRowModeEnabled="False"
-                                    ItemHeight="100"
-                                    DesiredWidth="320"
-                                    SelectionMode="None"
-                                    IsItemClickEnabled="True"
-                                    ItemTemplate="{StaticResource GlossaryElementTemplate}"
-                                    ItemsSource="{Binding Glossary}">
-            <controls:AdaptiveGridView.Header>
+        <ListView Name="AdaptiveGridViewControl"
+                  SelectionMode="None"
+                  IsItemClickEnabled="False"
+                  ItemTemplate="{StaticResource GlossaryItemTemplate}"
+                  ItemsSource="{x:Bind CVSGlossaryItems.View, Mode=OneWay}"
+                  ShowsScrollingPlaceholders="True"
+                  Padding="0,0,0,50">
+            <ListView.Header>
                 <controls:ScrollHeader TargetListViewBase="{Binding ElementName=AdaptiveGridViewControl}" 
                                        Mode="Fade" Margin="0,0,0,5">
                     <Grid x:Name="MyHeaderGrid"
@@ -59,8 +122,17 @@
                         </StackPanel>
                     </Grid>
                 </controls:ScrollHeader>
-            </controls:AdaptiveGridView.Header>
-        </controls:AdaptiveGridView>
+            </ListView.Header>
+            <ListView.GroupStyle>
+                <GroupStyle HeaderTemplate="{StaticResource GlossaryItemHeaderTemplate}"
+                            HeaderContainerStyle="{StaticResource GlossaryItemHeaderContainerStyle}"/>
+            </ListView.GroupStyle>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
 
         
         <controls:Loading x:Name="LoadingControl" HorizontalContentAlignment="Center" 

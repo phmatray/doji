@@ -1,51 +1,41 @@
-﻿// <copyright file="GlossaryUtilityViewModel.cs" company="GLPM">
-// Copyright (c) GLPM. All rights reserved.
-// </copyright>
+﻿using Doji.Models;
 
 namespace Doji.Pages.UtilityPages.GlossaryUtility
 {
-    using System.Collections.ObjectModel;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.Toolkit.Uwp.Helpers;
-    using Models;
-    using WatchlistUtility;
+    using Services;
+    using ViewModels;
 
     public class GlossaryUtilityViewModel : MyViewModelBase
     {
-        public GlossaryUtilityViewModel()
+        private readonly IDataService _dataService;
+
+        public GlossaryUtilityViewModel(IDataService dataService)
         {
-            this.Glossary = new ObservableCollection<GlossaryElement>();
+            this._dataService = dataService;
             this.InitializeAsync();
         }
 
-        public ObservableCollection<GlossaryElement> Glossary { get; }
+        private IEnumerable<GlossaryItemsGroup> _groupedGlossaryItems;
+        public IEnumerable<GlossaryItemsGroup> GroupedGlossaryItems
+        {
+            get => _groupedGlossaryItems;
+            set => Set(ref _groupedGlossaryItems, value);
+        }
 
         private async Task InitializeAsync()
         {
             this.IsLoading = true;
 
-            this.Glossary.Clear();
-            using (var jsonStream = await StreamHelper.GetPackagedFileStreamAsync("Pages/UtilityPages/GlossaryUtility/glossary.json"))
-            {
-                var jsonString = await jsonStream.ReadTextAsync();
-                var parsed = GlossaryJson.FromJson(jsonString);
-
-                foreach (var category in parsed.Categories)
-                {
-                    foreach (var element in category.Elements)
-                    {
-                        var item = new GlossaryElement
-                        {
-                            Category = category.Category,
-                            Description = element.Description,
-                            Title = element.Title
-                        };
-                        this.Glossary.Add(item);
-                    }
-                }
-            }
+            var glossaryItems = await this._dataService.GetGlossaryAsync();
+            this.GroupedGlossaryItems = glossaryItems
+                .OrderBy(x => x.FirstLetter)
+                .GroupBy(x => x.FirstLetter, (key, list) => new GlossaryItemsGroup(key, list));
 
             this.IsLoading = false;
         }
+
     }
 }
