@@ -13,28 +13,17 @@ namespace Doji.Pages.UtilityPages.WatchlistUtility
 {
     public class Summary
     {
-        public BittrexMarketSummary MarketSummary { get; }
-        public BittrexCurrency Currency { get; }
+        public CoinInfo Info { get; }
+        public CoinFullAggregatedDataDisplay BtcPrice { get; }
+        public CoinFullAggregatedDataDisplay EthPrice { get; }
         public string ImgUrl { get; }
 
-        public decimal PercentageChange
+        public Summary(CoinInfo coinInfo, CoinFullAggregatedDataDisplay btcPrice, CoinFullAggregatedDataDisplay ethPrice, string coinImgUrl)
         {
-            get
-            {
-                var last = MarketSummary.Last;
-                var prevDay = MarketSummary.PrevDay;
-
-                var percentage = (last - prevDay) / prevDay * 100;
-                var result = Math.Round(percentage, 1);
-                return result;
-            }
-        }
-
-        public Summary(BittrexMarketSummary marketSummary, BittrexCurrency currency, string imgUrl)
-        {
-            MarketSummary = marketSummary;
-            Currency = currency;
-            ImgUrl = imgUrl;
+            Info = coinInfo;
+            BtcPrice = btcPrice;
+            EthPrice = ethPrice;
+            ImgUrl = coinImgUrl;
         }
     }
 
@@ -47,41 +36,75 @@ namespace Doji.Pages.UtilityPages.WatchlistUtility
 
     public class WatchlistUtilityViewModel : MyViewModelBase
     {
-        private BittrexClient _client;
+        private bool _isLoading;
 
-        public string Hello { get; } = "Hello Watchlist";
+        public bool IsLoading
+        {
+            get { return _isLoading; }
+            private set { Set(ref _isLoading, value); }
+        }
+
         public ObservableCollection<Summary> Summaries { get; set; }
 
         public WatchlistUtilityViewModel()
         {
-            _client = new BittrexClient();
-
             Summaries = new ObservableCollection<Summary>();
             InitializeAsync();
-
         }
 
         public async Task InitializeAsync()
         {
-            var coinList = await CryptoCompareClient.Coins.ListAsync();
-            var currencies = (await BittrexClient.GetCurrenciesAsync()).Result;
-            var marketSummaries = (await BittrexClient.GetMarketSummariesAsync())
-                .Result
-                .Where(ms => ms.MarketName.StartsWith("BTC-"))
-                .OrderByDescending(ms => ms.BaseVolume);
+            IsLoading = true;
+
+            var exchangeListResponse = await CryptoCompareClient.Exchanges.ListAsync();
+            var coinListResponse = await CryptoCompareClient.Coins.ListAsync();
+
+            var symbols = exchangeListResponse
+                .First(x => x.Key == "BitTrex")
+                .Value
+                .Where(x => x.Value.Contains("BTC") && x.Value.Contains("ETH"))
+                .Select(x => x.Key)
+                .ToList();
+
+            var coins = coinListResponse.Coins
+                .Where(x => symbols.Contains(x.Key))
+                .ToList();
+
+            var priceMultiFullResponse = await CryptoCompareClient.Prices.MultiFullAsync(symbols, new[] { "BTC", "ETH" }, null, "BitTrex");
+            var btcPriceMulti = priceMultiFullResponse.Display
+                .SelectMany(x => x.Value)
+                .Where(x => x.Key == "BTC")
+                .Select(x => x.Value)
+                .OrderByDescending(x => x.Volume24Hour)
+                .ToList();
+
+            var ethPriceMulti = priceMultiFullResponse.Display
+                .SelectMany(x => x.Value)
+                .Where(x => x.Key == "ETH")
+                .Select(x => x.Value)
+                .OrderByDescending(x => x.Volume24Hour)
+                .ToList();
+
+//
+//            var btcMultiFullResponse = await CryptoCompareClient.Prices.MultiFullAsync(new[] { "BTC" }, new[] { "USD", "EUR" });
+//            var btcMulti = btcMultiFullResponse.Display.First().Value.Values.ToList();
+//            var ethMultiFullResponse = await CryptoCompareClient.Prices.MultiFullAsync(new[] { "ETH" }, new[] { "USD", "EUR" });
+
 
             Summaries.Clear();
-            foreach (var ms in marketSummaries)
+            foreach (var c in coins)
             {
                 try
                 {
-                    var symbol = ms.MarketName.Split('-').Last();
-                    var bittrexCurrency = currencies.First(x => x.Currency == symbol);
+                    var coin = c.Value;
+                    var btcPrice = btcPriceMulti.First(x => x.FromSymbol == c.Key);
+                    var ethPrice = ethPriceMulti.First(x => x.FromSymbol == c.Key);
 
-                    var tryGetValue = coinList.Coins.TryGetValue(symbol, out var coinInfo);
-                    var imgUrl = tryGetValue ? $"{coinList.BaseImageUrl}{coinInfo.ImageUrl}" : null;
+                    // imgUrl
+                    var tryGetValue = coinListResponse.Coins.TryGetValue(c.Key, out var coinInfo);
+                    var coinImgUrl = tryGetValue ? $"{coinListResponse.BaseImageUrl}{coinInfo.ImageUrl}" : null;
 
-                    var summary = new Summary(ms, bittrexCurrency, imgUrl);
+                    var summary = new Summary(coin, btcPrice, ethPrice, coinImgUrl);
                     Summaries.Add(summary);
                 }
                 catch (Exception e)
@@ -89,6 +112,8 @@ namespace Doji.Pages.UtilityPages.WatchlistUtility
                     Console.WriteLine(e);
                 }
             }
+
+            IsLoading = false;
         }
     }
 }

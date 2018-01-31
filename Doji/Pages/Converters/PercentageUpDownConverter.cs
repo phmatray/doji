@@ -10,7 +10,7 @@ namespace Doji.Pages.Converters
             if (value == null)
                 throw new ArgumentNullException(nameof(value));
 
-            var d = (decimal)value;
+            var d = System.Convert.ToDouble(value);
 
             var sign = d > 0 ? "+" : string.Empty;
             var result = $"{sign}{d}%";

@@ -10,44 +10,102 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=WatchlistUtility}">
 
     <Page.Resources>
+        <DataTemplate x:Key="WaitListTemplate">
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <ProgressRing IsActive="True" Margin="0,0,12,0" Foreground="{StaticResource Brush-White}" />
+                <TextBlock Text="Loading currencies" VerticalAlignment="Center" Foreground="White"/>
+            </StackPanel>
+        </DataTemplate>
+
         <DataTemplate x:Key="CurrenciesTemplate" x:DataType="watchlistUtility:Summary">
             <Grid
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="1">
-                
+            Background="White"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Margin="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="90px"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel VerticalAlignment="Center" Margin="10,0,0,0"
-                            Background="{Binding PercentageChange, Converter={StaticResource PercentageColorPastelConverter}}">
-                    <TextBlock Text="{Binding Currency.Currency}" FontWeight="Bold"/>
-                    <TextBlock Text="{Binding Currency.CurrencyLong}"/>
-                    <TextBlock Text="{Binding MarketSummary.Last, Converter={StaticResource PriceFormatConverter}}"/>
-                    <TextBlock Text="{Binding PercentageChange, Converter={StaticResource PercentageUpDownConverter}}" FontWeight="Bold"
-                               Foreground="{Binding PercentageChange, Converter={StaticResource PercentageColorConverter}}"/>
+                <TextBlock Text="{Binding Info.FullName}" 
+                        Grid.Row="0" Grid.ColumnSpan="2"
+                        FontWeight="Bold" Margin="10,10,0,0"/>
+                <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding BtcPrice.Price}" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding EthPrice.Price}" Margin="10,0,0,0"/>
                 </StackPanel>
-                <Image Source="{Binding ImgUrl}" Grid.Column="1" Margin="5"/>
+                <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,20,0">
+                    <TextBlock Text="{Binding BtcPrice.ChangePCT24Hour, Converter={StaticResource PercentageUpDownConverter}}"
+                            FontWeight="Bold" TextAlignment="Right"
+                            Foreground="{Binding BtcPrice.ChangePCT24Hour, Converter={StaticResource PercentageColorConverter}}"/>
+                    <TextBlock Text="{Binding EthPrice.ChangePCT24Hour, Converter={StaticResource PercentageUpDownConverter}}"
+                            FontWeight="Bold" TextAlignment="Right"
+                            Foreground="{Binding EthPrice.ChangePCT24Hour, Converter={StaticResource PercentageColorConverter}}"/>
+                </StackPanel>
+                <Image Source="{Binding ImgUrl}"
+                    Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="5"/>
             </Grid>
         </DataTemplate>
+        
+        <Style x:Key="BladeStyle" TargetType="controls:BladeItem">
+            <Setter Property="Header" Value="Default Blade" />
+            <Setter Property="Width" Value="400" />
+            <Setter Property="IsOpen" Value="True" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Opacity" Value="0.8" />
+        </Style>
     </Page.Resources>
     
     <Grid Background="{StaticResource Brush-Grey-05}">
-        <ScrollViewer>
-            <StackPanel VerticalAlignment="Top">
-                <controls:AdaptiveGridView Name="AdaptiveGridViewControl"
-                                           OneRowModeEnabled="False"
-                                           ItemHeight="90"
-                                           DesiredWidth="280"
-                                           SelectionMode="Single"
-                                           IsItemClickEnabled="True"
-                                           ItemTemplate="{StaticResource CurrenciesTemplate}"
-                                           ItemsSource="{Binding Summaries}"
-                                           Margin="10"/>
-            </StackPanel>
-        </ScrollViewer>
+        <controls:AdaptiveGridView Name="AdaptiveGridViewControl"
+                                    OneRowModeEnabled="False"
+                                    ItemHeight="100"
+                                    DesiredWidth="320"
+                                    SelectionMode="None"
+                                    IsItemClickEnabled="True"
+                                    ItemTemplate="{StaticResource CurrenciesTemplate}"
+                                    ItemsSource="{Binding Summaries}">
+            <controls:AdaptiveGridView.Header>
+                <controls:ScrollHeader TargetListViewBase="{Binding ElementName=AdaptiveGridViewControl}" 
+                                       Mode="Fade" Margin="0,0,0,5">
+                    <Grid x:Name="MyHeaderGrid"
+                            MinHeight="250"
+                            Background="{StaticResource Brush-Blue-01}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Margin="12"
+                                        FontSize="48"
+                                        FontWeight="Bold"
+                                        Foreground="{StaticResource Brush-White}"
+                                        Text="BitTrex Currencies"
+                                        TextAlignment="Center"
+                                        TextWrapping="WrapWholeWords" />
+                            <TextBlock Margin="12,0,12,12"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource Brush-White}"
+                                        Text="We provide individuals and businesses a world class experience to buy and sell cutting-edge cryptocurrencies and digital tokens. Based and fully regulated in the USA, Bittrex is the go-to spot for traders who demand lightning fast trade execution, stable wallets, and industry-best security practices. Whether you are new to trading and cryptocurrencies, or a veteran to both, Bittrex.com was created for you!"
+                                        TextAlignment="Center"
+                                        TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                    </Grid>
+                </controls:ScrollHeader>
+            </controls:AdaptiveGridView.Header>
+        </controls:AdaptiveGridView>
+
+        
+        <controls:Loading x:Name="LoadingControl" HorizontalContentAlignment="Center" 
+                          VerticalContentAlignment="Center"
+                          Background="Black" Opacity="0.7" IsLoading="{Binding IsLoading}">
+            <ContentControl x:Name="LoadingContentControl" ContentTemplate="{StaticResource WaitListTemplate}"/>
+        </controls:Loading>
+        
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
