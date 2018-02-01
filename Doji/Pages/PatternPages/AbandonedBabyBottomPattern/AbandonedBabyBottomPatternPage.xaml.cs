@@ -10,15 +10,22 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using Windows.UI.Xaml.Controls;
-
 namespace Doji.PatternPages
 {
+    using matray.tradingview.uwp;
+    using Windows.UI.Xaml.Controls;
+
     public sealed partial class AbandonedBabyBottomPatternPage : Page
     {
         public AbandonedBabyBottomPatternPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+            this.Loaded += AbandonedBabyBottomPatternPage_Loaded;
+        }
+
+        private void AbandonedBabyBottomPatternPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            TradingViewChartControl.Load(ref mywebview);
         }
     }
 }

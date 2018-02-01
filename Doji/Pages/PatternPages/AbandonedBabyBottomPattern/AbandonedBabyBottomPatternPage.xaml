@@ -10,6 +10,7 @@
     <Grid Background="{StaticResource Brush-Grey-05}">
         <StackPanel VerticalAlignment="Top">
         </StackPanel>
+        <WebView Name="mywebview" Margin="-5" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

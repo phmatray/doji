@@ -333,7 +333,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Bittrex.Net">
-      <Version>1.3.7</Version>
+      <Version>1.3.8</Version>
     </PackageReference>
     <PackageReference Include="CryptoCompare">
       <Version>0.0.5</Version>
@@ -367,6 +367,12 @@
     <Folder Include="Assets\NotificationAssets\" />
     <Folder Include="Assets\People\" />
     <Folder Include="Assets\Prettify\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\matray.tradingview.uwp\matray.tradingview.uwp.csproj">
+      <Project>{e0aafdb5-e2d1-4a30-8536-401d086e1e45}</Project>
+      <Name>matray.tradingview.uwp</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
