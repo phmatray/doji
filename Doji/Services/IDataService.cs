@@ -8,5 +8,6 @@
     {
         Task<DataItem> GetData();
         Task<List<GlossaryItem>> GetGlossaryAsync();
+        Task<List<Exchange>> GetExchangesAsync();
     }
 }

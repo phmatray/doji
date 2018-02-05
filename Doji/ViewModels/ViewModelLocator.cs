@@ -12,9 +12,10 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using Doji.Pages.UtilityPages.ExchangeUtility;
+
 namespace Doji.ViewModels
 {
-    using Design;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Ioc;
     using GalaSoft.MvvmLight.Views;
@@ -55,6 +56,7 @@ namespace Doji.ViewModels
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<WatchlistUtilityViewModel>();
             SimpleIoc.Default.Register<GlossaryUtilityViewModel>();
+            SimpleIoc.Default.Register<ExchangeUtilityViewModel>();
         }
 
         public MainViewModel Main
@@ -65,6 +67,9 @@ namespace Doji.ViewModels
 
         public GlossaryUtilityViewModel GlossaryUtility
             => ServiceLocator.Current.GetInstance<GlossaryUtilityViewModel>();
+
+        public ExchangeUtilityViewModel ExchangeUtility
+            => ServiceLocator.Current.GetInstance<ExchangeUtilityViewModel>();
 
         public static void Cleanup()
         {

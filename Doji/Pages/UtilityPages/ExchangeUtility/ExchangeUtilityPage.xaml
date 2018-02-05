@@ -1,0 +1,118 @@
+﻿<Page x:Class="Doji.PatternPages.ExchangeUtilityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Doji.PatternPages"
+      xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:Doji.Models"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=ExchangeUtility}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="WaitListTemplate">
+            <StackPanel Orientation="Horizontal" Padding="12">
+                <ProgressRing IsActive="True" Margin="0,0,12,0" Foreground="{StaticResource Brush-White}" />
+                <TextBlock Text="Loading exchanges" VerticalAlignment="Center" Foreground="White"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="ExchangesTemplate" x:DataType="models:Exchange">
+            <Grid
+                Background="White"
+                BorderBrush="Black"
+                BorderThickness="1"
+                Margin="2">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="90px"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding Name}" 
+                           Grid.Row="0" Grid.ColumnSpan="2"
+                           FontWeight="Bold" Margin="10,10,0,0"/>
+                <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding NbrPairs}" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        
+        <Style x:Key="BladeStyle" TargetType="controls:BladeItem">
+            <Setter Property="Header" Value="Default Blade" />
+            <Setter Property="Width" Value="400" />
+            <Setter Property="IsOpen" Value="True" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Opacity" Value="0.8" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource Brush-Grey-05}">
+        <controls:AdaptiveGridView Name="AdaptiveGridViewControl"
+                                    OneRowModeEnabled="False"
+                                    ItemHeight="100"
+                                    DesiredWidth="320"
+                                    SelectionMode="None"
+                                    IsItemClickEnabled="True"
+                                    ItemTemplate="{StaticResource ExchangesTemplate}"
+                                    ItemsSource="{Binding Exchanges}">
+            <controls:AdaptiveGridView.Header>
+                <controls:ScrollHeader TargetListViewBase="{Binding ElementName=AdaptiveGridViewControl}" 
+                                       Mode="Fade" Margin="0,0,0,5">
+                    <Grid x:Name="MyHeaderGrid"
+                            MinHeight="250"
+                            Background="{StaticResource Brush-Blue-01}">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Margin="12"
+                                        FontSize="48"
+                                        FontWeight="Bold"
+                                        Foreground="{StaticResource Brush-White}"
+                                        Text="Exchanges"
+                                        TextAlignment="Center"
+                                        TextWrapping="WrapWholeWords" />
+                            <TextBlock Margin="12,0,12,12"
+                                        VerticalAlignment="Center"
+                                        Foreground="{StaticResource Brush-White}"
+                                        Text="Cryptocurrency exchanges or digital currency exchanges (DCE) are businesses that allow customers to trade cryptocurrencies or digital currencies for other assets, such as conventional fiat money, or different digital currencies. They can be market makers that typically take the bid/ask spreads as transaction commissions for their services or simply charge fees as a matching platform."
+                                        TextAlignment="Center"
+                                        TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                    </Grid>
+                </controls:ScrollHeader>
+            </controls:AdaptiveGridView.Header>
+        </controls:AdaptiveGridView>
+
+        
+        <controls:Loading x:Name="LoadingControl" HorizontalContentAlignment="Center" 
+                          VerticalContentAlignment="Center"
+                          Background="Black" Opacity="0.7" IsLoading="{Binding IsLoading}">
+            <ContentControl x:Name="LoadingContentControl" ContentTemplate="{StaticResource WaitListTemplate}"/>
+        </controls:Loading>
+        
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Full">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Small">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="ButtonsPanel.Orientation" Value="Vertical" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

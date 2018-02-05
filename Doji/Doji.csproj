@@ -110,6 +110,11 @@
     </Compile>
     <Compile Include="Controls\XamlExceptionRange.cs" />
     <Compile Include="Controls\XamlRenderService.cs" />
+    <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtilityPage.xaml.cs">
+      <DependentUpon>ExchangeUtilityPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtilityViewModel.cs" />
     <Compile Include="Services\GitHubService.cs" />
     <Compile Include="Models\LandingPageResource.cs" />
     <Compile Include="Models\LandingPageLinks.cs" />
@@ -185,7 +190,7 @@
     <Compile Include="Controls\CodeRenderer\CodeRenderer.Properties.cs" />
     <Compile Include="Controls\CodeRenderer\CodeRenderer.cs" />
     <Compile Include="Controls\ExtendedHamburgerMenu.cs" />
-    <Compile Include="Design\DataService.cs" />
+    <Compile Include="Services\DataService.design.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -244,6 +249,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtility.png" />
+    <Content Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtility.png" />
     <Content Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtility.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -319,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtilityPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtilityPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -368,6 +378,7 @@
     <Folder Include="Assets\NotificationAssets\" />
     <Folder Include="Assets\People\" />
     <Folder Include="Assets\Prettify\" />
+    <Folder Include="Design\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\matray.tradingview.uwp\matray.tradingview.uwp.csproj">
