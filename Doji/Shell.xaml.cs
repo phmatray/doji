@@ -34,6 +34,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Doji.Common;
 using Doji.Controls;
+using Doji.Models;
 using Doji.Pages;
 
 namespace Doji
@@ -96,14 +97,23 @@ namespace Doji
             }
         }
 
-        public void NavigateToPattern(Pattern pattern)
+        public async Task NavigateToPattern(string patternType, object parameter = null)
+        {
+            var targetPattern = await Patterns.GetPatternByName(patternType);
+            if (targetPattern != null)
+            {
+                NavigateToPattern(targetPattern, parameter);
+            }
+        }
+
+        public void NavigateToPattern(Pattern pattern, object parameter = null)
         {
             var pageType = Type.GetType("Doji.PatternPages." + pattern.Type);
 
             if (pageType != null)
             {
                 InfoAreaPivot.Items.Clear();
-                NavigationFrame.Navigate(pageType, pattern.Name);
+                NavigationFrame.Navigate(pageType, parameter ?? pattern.Name);
             }
         }
 

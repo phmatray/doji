@@ -1,7 +1,10 @@
-﻿namespace Doji.Pages.UtilityPages.ExchangeUtility
+﻿using Windows.UI.Xaml.Controls;
+
+namespace Doji.Pages.UtilityPages.ExchangeUtility
 {
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
+    using GalaSoft.MvvmLight.Command;
     using Models;
     using Services;
     using ViewModels;
@@ -13,11 +16,16 @@
         public ExchangeUtilityViewModel(IDataService dataService)
         {
             this._dataService = dataService;
+
             this.Exchanges = new ObservableCollection<Exchange>();
+            this.GotoExchangeDetailsPage = new RelayCommand<Exchange>(async args =>
+                await Shell.Current.NavigateToPattern("WatchlistUtility", args));
+
             this.InitializeAsync();
         }
 
-        public ObservableCollection<Exchange> Exchanges { get; set; }
+        public ObservableCollection<Exchange> Exchanges { get; }
+        public RelayCommand<Exchange> GotoExchangeDetailsPage { get; }
 
         private async Task InitializeAsync()
         {
