@@ -25,38 +25,37 @@
                 Margin="2">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5*"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                     <ColumnDefinition Width="90px"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="{Binding Name}" 
-                           Grid.Row="0" Grid.ColumnSpan="2"
-                           FontWeight="Bold" Margin="10,10,0,0"/>
-                <StackPanel Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
-                    <TextBlock Text="{Binding NbrPairs}" Margin="10,0,0,0"/>
+                <Image Source="{Binding Logo}"
+                       Grid.Row="0" Grid.RowSpan="1" Grid.Column="1" Margin="5"/>
+                <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Name}" 
+                               Grid.Row="0" Grid.ColumnSpan="2"
+                               FontWeight="Bold" Margin="0,5,0,10"/>
+                    <TextBlock Text="{Binding Change}" Margin="10,0,0,0"/>
+                    <TextBlock Text="{Binding Country}" Margin="10,0,0,0"/>
                 </StackPanel>
+                <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                           Text="{Binding Description}"
+                           Margin="20,5,10,0"
+                           TextWrapping="Wrap" TextAlignment="Justify"
+                           FontWeight="Light" FontSize="13" />
             </Grid>
         </DataTemplate>
-        
-        <Style x:Key="BladeStyle" TargetType="controls:BladeItem">
-            <Setter Property="Header" Value="Default Blade" />
-            <Setter Property="Width" Value="400" />
-            <Setter Property="IsOpen" Value="True" />
-            <Setter Property="Background" Value="White" />
-            <Setter Property="Opacity" Value="0.8" />
-        </Style>
     </Page.Resources>
     
     <Grid Background="{StaticResource Brush-Grey-05}">
         <controls:AdaptiveGridView Name="AdaptiveGridViewControl"
                                     OneRowModeEnabled="False"
-                                    ItemHeight="100"
+                                    ItemHeight="275"
                                     DesiredWidth="320"
                                     SelectionMode="None"
                                     IsItemClickEnabled="True"

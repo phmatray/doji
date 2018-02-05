@@ -12,14 +12,13 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using Doji.Pages.UtilityPages.ExchangeUtility;
-
 namespace Doji.ViewModels
 {
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.Ioc;
     using GalaSoft.MvvmLight.Views;
     using Microsoft.Practices.ServiceLocation;
+    using Pages.UtilityPages.ExchangeUtility;
     using Pages.UtilityPages.GlossaryUtility;
     using Pages.UtilityPages.WatchlistUtility;
     using Services;

@@ -7,19 +7,19 @@
         "Name": "WatchlistUtility",
         "Type": "WatchlistUtilityPage",
         "About": "...",
-        "Icon": "/Pages/UtilityPages/WatchlistUtility/WatchlistUtility.png"
+        "Icon": "/Icons/Helpers.png"
       },
       {
         "Name": "GlossaryUtility",
         "Type": "GlossaryUtilityPage",
         "About": "...",
-        "Icon": "/Pages/UtilityPages/GlossaryUtility/GlossaryUtility.png"
+        "Icon": "/Icons/Helpers.png"
       },
       {
         "Name": "ExchangeUtility",
         "Type": "ExchangeUtilityPage",
         "About": "...",
-        "Icon": "/Pages/UtilityPages/ExchangeUtility/ExchangeUtility.png"
+        "Icon": "/Icons/Helpers.png"
       }
     ]
   },
@@ -61,14 +61,14 @@
         "Name": "DownsideTasukiGapPattern",
         "Type": "DownsideTasukiGapPatternPage",
         "About": "This pattern is a three candle pattern that in theory acts as a bearish continuation pattern.",
-        "Icon": "/Pages/PatternPages/DownsideTasukiGapPattern/DownsideTasukiGapPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/DownsideTasukiGapPattern.md"
       },
       {
         "Name": "EveningDojiStarPattern",
         "Type": "EveningDojiStarPatternPage",
         "About": "The Evening Doji Star candlestick pattern formation is one of the better performing three candle patterns out there.",
-        "Icon": "/Pages/PatternPages/EveningDojiStarPattern/EveningDojiStarPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/EveningDojiStarPattern.md"
       },
       {
@@ -82,35 +82,35 @@
         "Name": "MorningStarDojiPattern",
         "Type": "MorningStarDojiPatternPage",
         "About": "This three candle pattern formation is a bullish reversal pattern with a solid history of performing well.",
-        "Icon": "/Pages/PatternPages/MorningStarDojiPattern/MorningStarDojiPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/MorningStarDojiPattern.md"
       },
       {
         "Name": "MorningStarPattern",
         "Type": "MorningStarPatternPage",
         "About": "This pattern is similar to the Morning Doji Star candle pattern with the exception of the middle candle.",
-        "Icon": "/Pages/PatternPages/MorningStarPattern/MorningStarPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/MorningStarPattern.md"
       },
       {
         "Name": "SideBySideWhiteLinesBullishPattern",
         "Type": "SideBySideWhiteLinesBullishPatternPage",
         "About": "You won't hear too many traders reference the Side By Side White Lines candlestick pattern mostly due to its long name and rarity.",
-        "Icon": "/Pages/PatternPages/SideBySideWhiteLinesBullishPattern/SideBySideWhiteLinesBullishPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/SideBySideWhiteLinesBullishPattern.md"
       },
       {
         "Name": "StickSandwichPattern",
         "Type": "StickSandwichPatternPage",
         "About": "This pattern is a three candle pattern formation that in theory acts as a bullish reversal pattern.",
-        "Icon": "/Pages/PatternPages/StickSandwichPattern/StickSandwichPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/StickSandwichPattern.md"
       },
       {
         "Name": "TasukiUpsideGapPattern",
         "Type": "TasukiUpsideGapPatternPage",
         "About": "This pattern is a 3-candle bullish continuation pattern. Its counterpart is the Downside Tasuki Gap.",
-        "Icon": "/Pages/PatternPages/TasukiUpsideGapPattern/TasukiUpsideGapPattern.png",
+        "Icon": "/Icons/Helpers.png",
         "DocumentationUrl": "https://raw.githubusercontent.com/phmatray/doji/master/docs/patterns/TasukiUpsideGapPattern.md"
       }
     ]

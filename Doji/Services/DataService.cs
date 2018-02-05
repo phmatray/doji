@@ -1,22 +1,14 @@
 ﻿namespace Doji.Services
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using CryptoCompare;
     using Microsoft.Toolkit.Uwp.Helpers;
     using Models;
+    using Pages.UtilityPages.ExchangeUtility;
     using Pages.UtilityPages.GlossaryUtility;
 
     public class DataService : IDataService
     {
-        private CryptoCompareClient _cryptoCompare;
-
-        public DataService()
-        {
-            _cryptoCompare = CryptoCompareClient.Instance;
-        }
-
         public Task<DataItem> GetData()
         {
             return Task.FromResult(new DataItem("Hello World - Données réelles !"));
@@ -24,13 +16,27 @@
 
         public async Task<List<Exchange>> GetExchangesAsync()
         {
-            var exchangeListResponse = await _cryptoCompare.Exchanges.ListAsync();
-            var exchanges = exchangeListResponse
-                .Select(x => new Exchange(x.Key, x.Value.Count))
-                .OrderByDescending(x => x.NbrPairs)
-                .ToList();
+            var retval = new List<Exchange>();
+            using (var jsonStream = await StreamHelper.GetPackagedFileStreamAsync("Pages/UtilityPages/ExchangeUtility/exchanges.json"))
+            {
+                var jsonString = await jsonStream.ReadTextAsync();
+                var parsed = ExchangeJson.FromJson(jsonString);
 
-            return exchanges;
+                foreach (var ex in parsed)
+                {
+                    var item = new Exchange
+                    {
+                        Name = ex.Name,
+                        Description = ex.Description,
+                        Country = ex.Country,
+                        Change = ex.Change,
+                        Logo = ex.Logo
+                    };
+                    retval.Add(item);
+                }
+            }
+
+            return retval;
         }
 
         public async Task<List<GlossaryItem>> GetGlossaryAsync()

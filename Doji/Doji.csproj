@@ -111,6 +111,7 @@
     <Compile Include="Controls\XamlExceptionRange.cs" />
     <Compile Include="Controls\XamlRenderService.cs" />
     <Compile Include="Models\Exchange.cs" />
+    <Compile Include="Pages\UtilityPages\ExchangeUtility\ExchangeJsonModels.cs" />
     <Compile Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtilityPage.xaml.cs">
       <DependentUpon>ExchangeUtilityPage.xaml</DependentUpon>
     </Compile>
@@ -172,7 +173,7 @@
       <DependentUpon>IdenticalThreeCrowsPatternPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\GlossaryItemsGroup.cs" />
-    <Compile Include="Pages\UtilityPages\GlossaryUtility\JsonModels.cs" />
+    <Compile Include="Pages\UtilityPages\GlossaryUtility\GlossaryJsonModels.cs" />
     <Compile Include="Models\GlossaryItem.cs" />
     <Compile Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtilityViewModel.cs" />
     <Compile Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtilityPage.xaml.cs">
@@ -229,13 +230,6 @@
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Pages\PatternPages\AbandonedBabyBottomPattern\AbandonedBabyBottomPattern.png" />
     <Content Include="Pages\PatternPages\DeliberationPattern\DeliberationPattern.png" />
-    <Content Include="Pages\PatternPages\TasukiUpsideGapPattern\TasukiUpsideGapPattern.png" />
-    <Content Include="Pages\PatternPages\StickSandwichPattern\StickSandwichPattern.png" />
-    <Content Include="Pages\PatternPages\SideBySideWhiteLinesBullishPattern\SideBySideWhiteLinesBullishPattern.png" />
-    <Content Include="Pages\PatternPages\MorningStarPattern\MorningStarPattern.png" />
-    <Content Include="Pages\PatternPages\MorningStarDojiPattern\MorningStarDojiPattern.png" />
-    <Content Include="Pages\PatternPages\EveningDojiStarPattern\EveningDojiStarPattern.png" />
-    <Content Include="Pages\PatternPages\DownsideTasukiGapPattern\DownsideTasukiGapPattern.png" />
     <Content Include="Pages\PatternPages\DownsideGapThreePattern\DownsideGapThreePattern.png" />
     <Content Include="Pages\PatternPages\AdvanceBlockPattern\AdvanceBlockPattern.png" />
     <Content Include="Pages\PatternPages\IdenticalThreeCrowsPattern\IdenticalThreeCrowsPattern.png" />
@@ -246,11 +240,11 @@
     <Content Include="Pages\UtilityPages\GlossaryUtility\glossary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Pages\UtilityPages\ExchangeUtility\exchanges.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\UtilityPages\GlossaryUtility\GlossaryUtility.png" />
-    <Content Include="Pages\UtilityPages\ExchangeUtility\ExchangeUtility.png" />
-    <Content Include="Pages\UtilityPages\WatchlistUtility\WatchlistUtility.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -378,7 +372,6 @@
     <Folder Include="Assets\NotificationAssets\" />
     <Folder Include="Assets\People\" />
     <Folder Include="Assets\Prettify\" />
-    <Folder Include="Design\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\matray.tradingview.uwp\matray.tradingview.uwp.csproj">

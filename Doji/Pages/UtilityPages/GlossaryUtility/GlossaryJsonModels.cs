@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace Doji.Pages.UtilityPages.GlossaryUtility
+﻿namespace Doji.Pages.UtilityPages.GlossaryUtility
 {
+    using System.Collections.Generic;
+    using Newtonsoft.Json;
+
     public partial class GlossaryJson
     {
         [JsonProperty("source")]
