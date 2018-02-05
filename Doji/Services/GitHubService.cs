@@ -10,24 +10,24 @@
 // THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
 // ******************************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Windows.Web.Http;
-
-namespace Doji.Data
+namespace Doji.Services
 {
-    public static class GitHub
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Newtonsoft.Json;
+    using Windows.Web.Http;
+
+    public class GitHubService : IGitHubService
     {
         private const string _root = "https://api.github.com";
-        private const string _repoName = "UWPCommunityToolkit";
-        private const string _repoOwner = "Microsoft";
+        private const string _repoName = "doji";
+        private const string _repoOwner = "phmatray";
 
         private static List<GitHubRelease> _releases;
 
-        public static async Task<List<GitHubRelease>> GetPublishedReleases()
+        public async Task<List<GitHubRelease>> GetPublishedReleases()
         {
             if (_releases == null)
             {

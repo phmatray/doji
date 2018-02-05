@@ -41,6 +41,7 @@ namespace Doji.ViewModels
             SimpleIoc.Default.Register<INavigationService>(() => nav);
 
             SimpleIoc.Default.Register<IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IGitHubService, GitHubService>();
 
             if (ViewModelBase.IsInDesignModeStatic)
             {

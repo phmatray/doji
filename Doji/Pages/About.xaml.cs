@@ -29,6 +29,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using Doji.Services;
+using Doji.ViewModels;
 
 namespace Doji.Pages
 {
@@ -145,7 +147,7 @@ namespace Doji.Pages
         {
             var loadDataTask = UpdateSections();
             var recentPatternsTask = Patterns.GetRecentPatterns();
-            var gitHubTask = Data.GitHub.GetPublishedReleases();
+            var gitHubTask = new GitHubService().GetPublishedReleases();
 
             await Task.WhenAll(loadDataTask, recentPatternsTask, gitHubTask);
 
